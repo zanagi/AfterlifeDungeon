@@ -294,6 +294,9 @@ MonoBehaviour:
   - tile: 2
     prefab: {fileID: 8574638369664162997, guid: 0f7d4edd3a30cd34d9d97f3dbe79abd3,
       type: 3}
+  - tile: 3
+    prefab: {fileID: 8622334345955920051, guid: b86e288df13ef24469cccd9804c7fb28,
+      type: 3}
 --- !u!4 &1556551353
 Transform:
   m_ObjectHideFlags: 0

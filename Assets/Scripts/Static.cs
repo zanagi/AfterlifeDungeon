@@ -32,4 +32,9 @@ public static class Static
             array[idx] = tmp;
         }
     }
+
+    public static bool IsFloor(this Tile tile)
+    {
+        return tile == Tile.Floor || tile == Tile.Corridor;
+    }
 }

@@ -23,7 +23,7 @@ public class DungeonGenerator : MonoBehaviour
     private void GenerateDungeon()
     {
         // Define dungeon variables
-        Tile[,] tiles = new Tile[rows, cols];
+        Tile[,] tiles = new Tile[cols, rows];
 
         CreateRooms(roomCountRange.Random, ref tiles);
         CreateWalls(ref tiles);
@@ -85,7 +85,18 @@ public class DungeonGenerator : MonoBehaviour
 
     private void CreateWalls(ref Tile[,] tiles)
     {
-
+        for(int x = 1; x < cols - 1; x++)
+        {
+            for(int y = 1; y < rows - 1; y++)
+            {
+                if(tiles[x, y] == Tile.Empty && 
+                    (tiles[x + 1, y].IsFloor() || tiles[x, y + 1].IsFloor() || 
+                    tiles[x - 1, y].IsFloor() || tiles[x, y - 1].IsFloor()))
+                {
+                    tiles[x, y] = Tile.Wall;
+                }
+            }
+        }
     }
 
     private void CreateTiles(Tile[,] tiles)
