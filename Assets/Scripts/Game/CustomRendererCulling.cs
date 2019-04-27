@@ -16,7 +16,7 @@ public class CustomRendererCulling : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>();
     }
     
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if (renderers == null)
             return;

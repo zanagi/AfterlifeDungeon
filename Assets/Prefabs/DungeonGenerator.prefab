@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aa1d6da4a1abd54dad08a37462662a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleLimit: 60
+  angleLimit: 80
 --- !u!1 &7272508615100405060
 GameObject:
   m_ObjectHideFlags: 0

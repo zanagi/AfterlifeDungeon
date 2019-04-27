@@ -4,13 +4,30 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Game State")]
+    public StateChangeEvent stateObject;
+
     [Header("Player")]
     public PlayerSpawnEvent playerSpawnEvent;
-    public Transform playerTransform;
-
+    public Player player;
+    
     public void SpawnPlayer()
     {
         Debug.Log("Spawning player: " + playerSpawnEvent.PlayerPos);
-        playerTransform.position = playerSpawnEvent.PlayerPos;
+        player.transform.position = playerSpawnEvent.PlayerPos;
+    }
+
+    private void Update()
+    {
+        if (stateObject.CurrentState != GameState.Idle)
+            return;
+        player.HandleUpdate();
+    }
+
+    private void FixedUpdate()
+    {
+        if (stateObject.CurrentState != GameState.Idle)
+            return;
+        player.HandleFixedUpdate();
     }
 }
