@@ -25,7 +25,6 @@ public class Test : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.F1))
         {
-            Debug.Log("Play test dialogue.");
             dialogueEvent.PlayDialogue(dialogue);
         }
     }

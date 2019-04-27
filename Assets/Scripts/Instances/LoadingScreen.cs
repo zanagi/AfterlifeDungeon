@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour
 {
+    public static bool waitLoad = false;
+
     public bool IsLoading { get; private set; }
     public string CurrentScene { get; private set; }
 
@@ -53,6 +55,11 @@ public class LoadingScreen : MonoBehaviour
             yield return new WaitForSecondsRealtime(frameTime);
 
         Time.timeScale = 1f;
+
+        yield return null;
+
+        while (waitLoad)
+            yield return null;
 
         // Animate fade-out
         yield return AnimateBackgroundFade(0.0f);

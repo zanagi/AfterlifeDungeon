@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class InstanceManager : MonoBehaviour
 {
+    public StateChangeEvent stateChangeEvent;
     private static InstanceManager Instance;
 
     private void Awake()
@@ -15,5 +16,8 @@ public class InstanceManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        // Set starting state as idle
+        stateChangeEvent.ChangeState(GameState.Idle);
     }
 }

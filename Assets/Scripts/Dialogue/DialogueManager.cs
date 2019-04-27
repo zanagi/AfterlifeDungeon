@@ -84,8 +84,9 @@ public class DialogueManager : MonoBehaviour
 
             float target = Mathf.Lerp(start, end, time / animationTime);
             textBoxImage.SetAlpha(target);
+            textBoxImage.transform.localScale = new Vector3(target, target);
             nameBoxImage.SetAlpha(target);
-            nameBoxImage.transform.localScale = new Vector3(target, 1);
+            // nameBoxImage.transform.localScale = new Vector3(target, target);
 
             if (mainImage.enabled)
                 mainImage.SetAlpha(target);
