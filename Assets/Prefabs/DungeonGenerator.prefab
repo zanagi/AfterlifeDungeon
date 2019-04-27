@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4234754275551222500}
   - component: {fileID: 4234754275551222501}
+  - component: {fileID: 1556551352}
   m_Layer: 0
   m_Name: DungeonGenerator
   m_TagString: Untagged
@@ -27,7 +28,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 3818448375541225950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -43,14 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b0c075b15387c42a2a7c3271832161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rows: 100
-  cols: 100
+  rows: 60
+  cols: 60
   roomCountRange:
-    m_Min: 5
-    m_Max: 10
+    m_Min: 4
+    m_Max: 6
   roomSizeRange:
-    m_Min: 5
-    m_Max: 20
+    m_Min: 6
+    m_Max: 12
   tilePrefabs:
   - tile: 1
     prefab: {fileID: 8574638369664162997, guid: 0f7d4edd3a30cd34d9d97f3dbe79abd3,
@@ -62,3 +64,64 @@ MonoBehaviour:
     prefab: {fileID: 8622334345955920051, guid: b86e288df13ef24469cccd9804c7fb28,
       type: 3}
   playerSpawnEvent: {fileID: 11400000, guid: 96786c8c3bc27d34393be70ce3f10c51, type: 2}
+--- !u!114 &1556551352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234754275551222506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aa1d6da4a1abd54dad08a37462662a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angleLimit: 60
+--- !u!1 &7272508615100405060
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3818448375541225950}
+  - component: {fileID: 328157727497732438}
+  m_Layer: 8
+  m_Name: PPVolume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3818448375541225950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272508615100405060}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4234754275551222500}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &328157727497732438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272508615100405060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 668bd03f0afdce5468d740fa0e777f7a, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
