@@ -868,6 +868,8 @@ MonoBehaviour:
   nameBoxImage: {fileID: 1316264570}
   mainText: {fileID: 952349104}
   nameText: {fileID: 1117980832}
+  animationTime: 0.4
+  pauseTime: 0.2
   textCharTime: 0.02
   stateChangeEvent: {fileID: 11400000, guid: 9d0afb722137b7c47b960bc8ce996dce, type: 2}
 --- !u!114 &4134805394586828634

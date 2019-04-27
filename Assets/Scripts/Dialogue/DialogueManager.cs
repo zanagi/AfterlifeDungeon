@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
     public Image mainImage;
     public Image textBoxImage, nameBoxImage;
     public Text mainText, nameText;
-    public float textCharTime = 0.04f;
+    public float animationTime = 0.2f, pauseTime = 0.2f, textCharTime = 0.04f;
     private Canvas canvas;
     private bool inputNext;
 
@@ -37,13 +37,12 @@ public class DialogueManager : MonoBehaviour
     public void SetVisible(bool visible)
     {
         canvas.enabled = visible;
+    }
 
-        // Reset UI values when hiding canvas
-        if(!visible)
-        {
-            mainText.text = nameText.text = string.Empty;
-            mainImage.enabled = false;
-        }
+    private void EmptyUI()
+    {
+        mainText.text = nameText.text = string.Empty;
+        mainImage.enabled = false;
     }
 
     public void PlayDialogue()
@@ -72,19 +71,45 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator AnimateUI(float start, float end)
     {
-        if(end >= 1)
+        if (end >= 1)
             SetVisible(true);
+        else
+            EmptyUI();
 
-        yield return null;
+        // Animate the values of UI elements
+        float time = 0.0f;
+        while(time <= animationTime)
+        {
+            time += Time.deltaTime;
+
+            float target = Mathf.Lerp(start, end, time / animationTime);
+            textBoxImage.SetAlpha(target);
+            nameBoxImage.SetAlpha(target);
+            nameBoxImage.transform.localScale = new Vector3(target, 1);
+
+            if (mainImage.enabled)
+                mainImage.SetAlpha(target);
+            yield return null;
+        }
 
         if (end <= 0)
             SetVisible(false);
+        yield return new WaitForSecondsRealtime(pauseTime);
     }
 
     public IEnumerator AnimateSprite(string spriteName)
     {
         mainImage.enabled = true;
         mainImage.sprite = GetSprite(spriteName);
+
+        float time = 0.0f;
+        while(time <= animationTime)
+        {
+            time += Time.deltaTime;
+            mainImage.SetAlpha(time / animationTime);
+            yield return null;
+        }
+
         yield return null;
     }
 
