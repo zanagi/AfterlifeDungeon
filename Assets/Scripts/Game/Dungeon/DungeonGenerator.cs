@@ -92,18 +92,27 @@ public class DungeonGenerator : MonoBehaviour
 
     private void CreateWalls(ref Tile[,] tiles)
     {
-        for(int x = 1; x < cols - 1; x++)
+        for(int x = 0; x < cols; x++)
         {
-            for(int y = 1; y < rows - 1; y++)
+            for(int y = 0; y < rows; y++)
             {
                 if(tiles[x, y] == Tile.Empty && 
-                    (tiles[x + 1, y].IsFloor() || tiles[x, y + 1].IsFloor() || 
-                    tiles[x - 1, y].IsFloor() || tiles[x, y - 1].IsFloor()))
+                    (IsTileFloor(tiles, x + 1, y) || IsTileFloor(tiles, x, y + 1) ||
+                    IsTileFloor(tiles, x - 1, y) || IsTileFloor(tiles, x, y - 1)))
                 {
                     tiles[x, y] = Tile.Wall;
                 }
             }
         }
+    }
+
+    private bool IsTileFloor(Tile[,] tiles, int x, int y)
+    {
+        if(x < 0 || x >= cols || y < 0 || y >= rows)
+        {
+            return false;
+        }
+        return tiles[x, y].IsFloor();
     }
 
     private void CreateTiles(Tile[,] tiles)

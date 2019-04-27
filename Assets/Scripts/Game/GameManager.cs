@@ -17,6 +17,14 @@ public class GameManager : MonoBehaviour
         player.transform.position = playerSpawnEvent.PlayerPos;
     }
 
+    public void OnStateChange()
+    {
+        if(stateObject.CurrentState != GameState.Idle)
+        {
+            player.Stop();
+        }
+    }
+
     private void Update()
     {
         if (stateObject.CurrentState != GameState.Idle)

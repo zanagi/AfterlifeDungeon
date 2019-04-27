@@ -22,4 +22,10 @@ public class Player : MonoBehaviour
         for (int i = 0; i < components.Length; i++)
             components[i].HandleFixedUpdate(this);
     }
+
+    public void Stop()
+    {
+        for (int i = 0; i < components.Length; i++)
+            components[i].Stop(this);
+    }
 }
