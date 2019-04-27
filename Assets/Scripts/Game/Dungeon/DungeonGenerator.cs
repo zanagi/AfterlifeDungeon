@@ -26,6 +26,7 @@ public class DungeonGenerator : MonoBehaviour
         Tile[,] tiles = new Tile[rows, cols];
 
         CreateRooms(roomCountRange.Random, ref tiles);
+        CreateWalls(ref tiles);
         CreateTiles(tiles);
     }
 
@@ -37,7 +38,8 @@ public class DungeonGenerator : MonoBehaviour
         {
             // Initialize room
             Room room = new Room(
-                Random.Range(1, rows - 1), Random.Range(1, cols - 1), roomSizeRange.Random, roomSizeRange.Random);
+                Random.Range(1, rows - 1 - roomSizeRange.m_Max), Random.Range(1, cols - 1 - roomSizeRange.m_Max), 
+                roomSizeRange.Random, roomSizeRange.Random);
 
             // Set tile values
             for (int x = room.x; x <= room.x + room.width; x++)
@@ -50,6 +52,40 @@ public class DungeonGenerator : MonoBehaviour
             // Add room to list
             rooms.Add(room);
         }
+        CreateCorridors(rooms.ToArray(), ref tiles);
+    }
+
+    private void CreateCorridors(Room[] rooms, ref Tile[,] tiles)
+    {
+        Static.Shuffle(rooms);
+
+        for(int i = 0; i < rooms.Length; i++)
+        {
+            Room room = rooms[i];
+            Room other = rooms[(i + 1) % rooms.Length];
+
+            // Get coordinate values
+            int x1 = room.RandomX, y1 = room.RandomY,
+                x2 = other.RandomX, y2 = other.RandomY;
+
+            int deltaX = x2 > x1 ? 1 : -1;
+            int deltaY = y2 > y1 ? 1 : -1;
+
+            for (int x = x1; x != x2; x += deltaX)
+            {
+                tiles[x, y1] = tiles[x, y1] == Tile.Floor ? Tile.Floor : Tile.Corridor;
+            }
+
+            for(int y = y1; y != y2; y += deltaY)
+            {
+                tiles[x2, y] = tiles[x2, y] == Tile.Floor ? Tile.Floor : Tile.Corridor;
+            }
+        }
+    }
+
+    private void CreateWalls(ref Tile[,] tiles)
+    {
+
     }
 
     private void CreateTiles(Tile[,] tiles)

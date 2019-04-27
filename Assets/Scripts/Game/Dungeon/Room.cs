@@ -26,4 +26,14 @@ public struct Room
         return Contains(other.x, other.y) || Contains(other.x + width, other.y)
             || Contains(other.x, other.y + height) || Contains(other.x + width, other.y + height);
     }
+
+    public int RandomX
+    {
+        get { return x + Random.Range(0, width + 1); }
+    }
+
+    public int RandomY
+    {
+        get { return y + Random.Range(0, height + 1); }
+    }
 }

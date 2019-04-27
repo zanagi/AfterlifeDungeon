@@ -20,4 +20,5 @@ public class InstanceManager : MonoBehaviour
         // Set starting state as idle
         stateChangeEvent.ChangeState(GameState.Idle);
     }
+    
 }

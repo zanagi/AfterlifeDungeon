@@ -120,6 +120,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &476247739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 476247741}
+  - component: {fileID: 476247740}
+  m_Layer: 0
+  m_Name: Test
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &476247740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476247739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd87b2e29e83fe54ca9c3dba3ccc7b64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadEvent: {fileID: 11400000, guid: 6278679fd5a43f14eae8bbb341297a4d, type: 2}
+  dialogueEvent: {fileID: 11400000, guid: cc03506df0146e5418b7f7d2ed704a40, type: 2}
+  dialogue: {fileID: 4900000, guid: d78aaa5c30a6ef34596f32373eedc763, type: 3}
+  sceneName: Game
+--- !u!4 &476247741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 476247739}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 55.101585, y: 13.165648, z: 37.29003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,13 +282,16 @@ MonoBehaviour:
   rows: 100
   cols: 100
   roomCountRange:
-    m_Min: 1
-    m_Max: 3
+    m_Min: 5
+    m_Max: 10
   roomSizeRange:
-    m_Min: 8
+    m_Min: 5
     m_Max: 20
   tilePrefabs:
   - tile: 1
+    prefab: {fileID: 8574638369664162997, guid: 0f7d4edd3a30cd34d9d97f3dbe79abd3,
+      type: 3}
+  - tile: 2
     prefab: {fileID: 8574638369664162997, guid: 0f7d4edd3a30cd34d9d97f3dbe79abd3,
       type: 3}
 --- !u!4 &1556551353

@@ -19,4 +19,17 @@ public static class Static
         color.a = alpha;
         shadow.effectColor = color;
     }
+
+    public static void Shuffle<T>(T[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            int idx = Random.Range(i, array.Length);
+
+            //swap elements
+            T tmp = array[i];
+            array[i] = array[idx];
+            array[idx] = tmp;
+        }
+    }
 }

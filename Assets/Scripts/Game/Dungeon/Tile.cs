@@ -2,5 +2,6 @@
 {
     Empty,
     Floor,
+    Corridor,
     Wall
 }
