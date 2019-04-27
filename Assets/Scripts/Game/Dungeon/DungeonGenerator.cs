@@ -14,8 +14,9 @@ public class DungeonGenerator : MonoBehaviour
     public int rows, cols;
     public IntRange roomCountRange, roomSizeRange;
     public TileToObject[] tilePrefabs;
+    public PlayerSpawnEvent playerSpawnEvent;
 
-    private void Awake()
+    private void Start()
     {
         GenerateDungeon();
     }
@@ -52,7 +53,13 @@ public class DungeonGenerator : MonoBehaviour
             // Add room to list
             rooms.Add(room);
         }
-        CreateCorridors(rooms.ToArray(), ref tiles);
+        Room[] roomArray = rooms.ToArray();
+
+        // Spawn player
+        Room spawnRoom = Static.GetRandom(roomArray);
+        playerSpawnEvent.Spawn(new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY));
+
+        CreateCorridors(roomArray, ref tiles);
     }
 
     private void CreateCorridors(Room[] rooms, ref Tile[,] tiles)

@@ -33,6 +33,16 @@ public static class Static
         }
     }
 
+    public static T GetRandom<T>(this T[] array)
+    {
+        if (array.Length == 0)
+        {
+            Debug.Log("Warning! Getting random value from empty array!");
+            return default(T);
+        }
+        return array[Random.Range(0, array.Length)];
+    }
+
     public static bool IsFloor(this Tile tile)
     {
         return tile == Tile.Floor || tile == Tile.Corridor;
