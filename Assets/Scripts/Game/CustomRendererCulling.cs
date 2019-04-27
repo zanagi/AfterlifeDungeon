@@ -5,6 +5,8 @@ using UnityEngine;
 public class CustomRendererCulling : MonoBehaviour
 {
     public float angleLimit = 90;
+    public float minDistance = 2;
+    private float minDistanceSqr;
     private Camera mainCamera;
     private Renderer[] renderers;
     
@@ -14,6 +16,7 @@ public class CustomRendererCulling : MonoBehaviour
         yield return null;
         mainCamera = Camera.main;
         renderers = GetComponentsInChildren<Renderer>();
+        minDistanceSqr = minDistance * minDistance;
     }
     
     private void LateUpdate()
@@ -32,7 +35,7 @@ public class CustomRendererCulling : MonoBehaviour
             cameraDelta.y = 0;
             float angle = Vector3.Angle(cameraDir, cameraDelta);
 
-            renderers[i].enabled = angle <= angleLimit;
+            renderers[i].enabled = angle <= angleLimit || Vector3.SqrMagnitude(cameraPos - targetPos) <= minDistanceSqr;
         }
     }
 }
