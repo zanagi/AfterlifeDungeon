@@ -150,6 +150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadEvent: {fileID: 11400000, guid: 6278679fd5a43f14eae8bbb341297a4d, type: 2}
+  dialogueEvent: {fileID: 11400000, guid: cc03506df0146e5418b7f7d2ed704a40, type: 2}
+  dialogue: {fileID: 4900000, guid: d78aaa5c30a6ef34596f32373eedc763, type: 3}
   sceneName: Menu
 --- !u!4 &294892354
 Transform:
