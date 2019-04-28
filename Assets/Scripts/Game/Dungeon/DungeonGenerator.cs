@@ -16,6 +16,10 @@ public class DungeonGenerator : MonoBehaviour
     public TileToObject[] tilePrefabs;
     public PlayerSpawnEvent playerSpawnEvent;
 
+    [Header("Interactables")]
+    public IntRange interactableCountRange;
+    public GameObject[] interactablePrefabs;
+
     private void Start()
     {
         GenerateDungeon();
@@ -55,11 +59,29 @@ public class DungeonGenerator : MonoBehaviour
         }
         Room[] roomArray = rooms.ToArray();
 
-        // Spawn player
-        Room spawnRoom = Static.GetRandom(roomArray);
-        playerSpawnEvent.Spawn(new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY));
-
+        SpawnPlayer(roomArray);
+        SpawnInteractables(roomArray);
         CreateCorridors(roomArray, ref tiles);
+    }
+
+    private void SpawnPlayer(Room[] rooms)
+    {
+        Room spawnRoom = Static.GetRandom(rooms);
+        playerSpawnEvent.Spawn(new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY));
+    }
+
+    private void SpawnInteractables(Room[] rooms)
+    {
+        int count = interactableCountRange.Random;
+
+        // TODO: Check for spawn on same space?
+        for(int i = 0; i < count; i++)
+        {
+            Room spawnRoom = Static.GetRandom(rooms);
+            GameObject prefab = interactablePrefabs.GetRandom();
+            GameObject interactable = Instantiate(prefab, transform);
+            interactable.transform.position = new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY);
+        }
     }
 
     private void CreateCorridors(Room[] rooms, ref Tile[,] tiles)
