@@ -127,6 +127,8 @@ public class DialogueManager : MonoBehaviour
     public IEnumerator AnimateText(string name, string text)
     {
         nameText.text = name;
+        nameBoxImage.gameObject.SetActive(name != null && name.Length > 0);
+
         mainText.text = string.Empty;
 
         for(int i = 0; i < text.Length; i++)

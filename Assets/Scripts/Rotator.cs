@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Rotator : MonoBehaviour
 {
-    [SerializeField]
-    private Vector3 rotationPerSecond;
+    public Vector3 rotationPerSecond;
     
     private void FixedUpdate()
     {

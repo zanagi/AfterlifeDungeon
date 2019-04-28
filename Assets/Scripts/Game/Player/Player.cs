@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public ContactEvent contactEvent;
+
+    [HideInInspector]
+    public Interactable lastInteractable;
     private PlayerComponent[] components;
-    private Interactable lastInteractable;
 
     private void Start()
     {
@@ -37,8 +40,10 @@ public class Player : MonoBehaviour
         {
             lastInteractable = interactable;
 
-            // TODO: Fire interact game event
-            Debug.Log("Interactable: " + interactable.name);
+            if(interactable)
+            {
+                contactEvent.OnContact(interactable.interactText);
+            }
         }
     }
 
@@ -47,6 +52,7 @@ public class Player : MonoBehaviour
         if (lastInteractable == interactable)
         {
             lastInteractable = null;
+            contactEvent.OnContact(string.Empty);
         }
     }
 }

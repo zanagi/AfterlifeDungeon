@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 5672eb11816909140b34768ea1b33568, type: 2}
-  m_Color: {r: 0.8584906, g: 0.48934487, b: 0.3037113, a: 1}
+  m_Color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -636,6 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5462666519895200843}
   - component: {fileID: 1244518287}
+  - component: {fileID: 1547796116}
   m_Layer: 0
   m_Name: Instances
   m_TagString: Untagged
@@ -673,6 +674,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateChangeEvent: {fileID: 11400000, guid: 9d0afb722137b7c47b960bc8ce996dce, type: 2}
+--- !u!114 &1547796116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5462666519895200842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0e4a634f9e8ce4f96884b77553171e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  keyCode: 9
 --- !u!1 &5462666519970977491
 GameObject:
   m_ObjectHideFlags: 0
@@ -869,7 +884,7 @@ MonoBehaviour:
   nameBoxImage: {fileID: 1316264570}
   mainText: {fileID: 952349104}
   nameText: {fileID: 1117980832}
-  animationTime: 0.4
+  animationTime: 0.2
   pauseTime: 0.2
   textCharTime: 0.02
   stateChangeEvent: {fileID: 11400000, guid: 9d0afb722137b7c47b960bc8ce996dce, type: 2}

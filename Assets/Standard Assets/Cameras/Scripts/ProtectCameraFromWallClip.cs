@@ -108,7 +108,6 @@ namespace UnityStandardAssets.Cameras
             // visualise the cam clip effect in the editor
             if (hitSomething)
             {
-                Debug.Log("Hit");
                 Debug.DrawRay(m_Ray.origin, -m_Pivot.forward*(targetDist + sphereCastRadius), Color.red);
             }
 

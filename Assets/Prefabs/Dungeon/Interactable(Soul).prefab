@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4091936218951027020}
   - component: {fileID: 1084061867226621652}
   - component: {fileID: 11980895}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4806,7 +4806,8 @@ GameObject:
   - component: {fileID: 3778870395422128434}
   - component: {fileID: 6307038656795977903}
   - component: {fileID: 1368186533314682940}
-  m_Layer: 0
+  - component: {fileID: 3875227053830335541}
+  m_Layer: 10
   m_Name: Interactable(Soul)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4856,6 +4857,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5d0e237fe5c2445ab9bae1a62b7f55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactText: Talk
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3875227053830335541}
+        m_MethodName: PlayDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &3875227053830335541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778870395422128433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f880304a6334ef4a8c694c7188144f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 4900000, guid: d78aaa5c30a6ef34596f32373eedc763, type: 3}
+  dialogueEvent: {fileID: 11400000, guid: cc03506df0146e5418b7f7d2ed704a40, type: 2}
 --- !u!1 &3778870395472210135
 GameObject:
   m_ObjectHideFlags: 0
@@ -4868,7 +4900,7 @@ GameObject:
   - component: {fileID: 3778870395472210131}
   - component: {fileID: 3778870395472210130}
   - component: {fileID: 3778870395472210129}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
