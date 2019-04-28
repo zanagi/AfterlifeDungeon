@@ -22,12 +22,12 @@ public class DungeonGenerator : MonoBehaviour
 
     [Header("Interactables")]
     public IntRange interactableCountRange;
-    public GameObject[] interactablePrefabs;
+    public BaseAI[] interactablePrefabs;
 
     [Header("Enemies")]
     public EnemySpawnEvent enemySpawnEvent;
     public IntRange enemyCountRange;
-    public EnemySoul[] enemyPrefabs;
+    public BaseAI[] enemyPrefabs;
 
     private void Start()
     {
@@ -88,9 +88,9 @@ public class DungeonGenerator : MonoBehaviour
         for(int i = 0; i < count; i++)
         {
             Room spawnRoom = Static.GetRandom(rooms);
-            GameObject prefab = interactablePrefabs.GetRandom();
-            GameObject interactable = Instantiate(prefab, transform);
-            interactable.transform.position = new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY);
+            BaseAI prefab = interactablePrefabs.GetRandom();
+            Vector3 spawnPos = new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY);
+            enemySpawnEvent.Spawn(prefab, spawnPos);
         }
     }
 
@@ -102,7 +102,7 @@ public class DungeonGenerator : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             Room spawnRoom = Static.GetRandom(rooms);
-            EnemySoul prefab = enemyPrefabs.GetRandom();
+            BaseAI prefab = enemyPrefabs.GetRandom();
             Vector3 spawnPos = new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY);
             enemySpawnEvent.Spawn(prefab, spawnPos);
         }

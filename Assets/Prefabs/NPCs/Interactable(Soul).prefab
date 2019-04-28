@@ -4808,6 +4808,7 @@ GameObject:
   - component: {fileID: 6307038656795977903}
   - component: {fileID: 1368186533314682940}
   - component: {fileID: 3875227053830335541}
+  - component: {fileID: 4103349534164546879}
   m_Layer: 10
   m_Name: Interactable(Soul)
   m_TagString: Untagged
@@ -4838,11 +4839,11 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3778870395422128433}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -4889,6 +4890,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 11400000, guid: 79f343baf314de34b89608d40ef08e44, type: 2}
   dialogueEvent: {fileID: 11400000, guid: cc03506df0146e5418b7f7d2ed704a40, type: 2}
+--- !u!114 &4103349534164546879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778870395422128433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f9d84679ec5674a89c0db9e8807006, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderRadius: 3
+  speed: 1
+  maxWanderTime: 5
+  pauseTime: 2
 --- !u!1 &3778870395472210135
 GameObject:
   m_ObjectHideFlags: 0

@@ -83,6 +83,7 @@ public class DialogueManager : MonoBehaviour
         {
             yield return AnimateChoices(dialogueEvent.Dialogue.choiceObject);
         }
+        yield return null;
     }
 
     private IEnumerator AnimateUI(float start, float end)

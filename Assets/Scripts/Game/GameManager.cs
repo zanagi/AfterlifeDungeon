@@ -13,8 +13,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Enemy")]
     public EnemySpawnEvent enemySpawnEvent;
-    private List<EnemySoul> enemies;
-
+    public List<BaseAI> NPCs;
+    
     public void SpawnPlayer()
     {
         player.transform.position = playerSpawnEvent.PlayerPos;
@@ -22,17 +22,17 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        if (enemies == null)
-            enemies = new List<EnemySoul>();
-        EnemySoul enemy = Instantiate(enemySpawnEvent.EnemyPrefab);
-        enemy.transform.position = enemySpawnEvent.SpawnPos;
-        enemies.Add(enemy);
+        BaseAI npc = Instantiate(enemySpawnEvent.NPCPrefab);
+        npc.transform.position = enemySpawnEvent.SpawnPos;
+        NPCs.Add(npc);
     }
 
     public void OnStateChange()
     {
         if(stateObject.CurrentState != GameState.Idle)
         {
+            for (int i = 0; i < NPCs.Count; i++)
+                NPCs[i].Stop();
             player.Stop();
         }
     }
@@ -41,6 +41,9 @@ public class GameManager : MonoBehaviour
     {
         if (stateObject.CurrentState != GameState.Idle)
             return;
+
+        for (int i = 0; i < NPCs.Count; i++)
+            NPCs[i].HandleUpdate(player);
         player.HandleUpdate();
     }
 
@@ -48,6 +51,9 @@ public class GameManager : MonoBehaviour
     {
         if (stateObject.CurrentState != GameState.Idle)
             return;
+
+        for (int i = 0; i < NPCs.Count; i++)
+            NPCs[i].HandleFixedUpdate(player);
         player.HandleFixedUpdate();
     }
 }
