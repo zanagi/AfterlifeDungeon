@@ -11,14 +11,23 @@ public struct TileToObject
 
 public class DungeonGenerator : MonoBehaviour
 {
-    public int rows, cols;
+    [Header("Dungeon settings")]
+    public int rows;
+    public int cols;
     public IntRange roomCountRange, roomSizeRange;
     public TileToObject[] tilePrefabs;
+
+    [Header("Player")]
     public PlayerSpawnEvent playerSpawnEvent;
 
     [Header("Interactables")]
     public IntRange interactableCountRange;
     public GameObject[] interactablePrefabs;
+
+    [Header("Enemies")]
+    public EnemySpawnEvent enemySpawnEvent;
+    public IntRange enemyCountRange;
+    public EnemySoul[] enemyPrefabs;
 
     private void Start()
     {
@@ -61,6 +70,7 @@ public class DungeonGenerator : MonoBehaviour
 
         SpawnPlayer(roomArray);
         SpawnInteractables(roomArray);
+        SpawnEnemies(roomArray);
         CreateCorridors(roomArray, ref tiles);
     }
 
@@ -81,6 +91,20 @@ public class DungeonGenerator : MonoBehaviour
             GameObject prefab = interactablePrefabs.GetRandom();
             GameObject interactable = Instantiate(prefab, transform);
             interactable.transform.position = new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY);
+        }
+    }
+
+    private void SpawnEnemies(Room[] rooms)
+    {
+        int count = enemyCountRange.Random;
+
+        // TODO: Check for spawn on same space?
+        for (int i = 0; i < count; i++)
+        {
+            Room spawnRoom = Static.GetRandom(rooms);
+            EnemySoul prefab = enemyPrefabs.GetRandom();
+            Vector3 spawnPos = new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY);
+            enemySpawnEvent.Spawn(prefab, spawnPos);
         }
     }
 

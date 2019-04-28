@@ -17,16 +17,24 @@ public class DialogueManager : MonoBehaviour
     public Image mainImage;
     public Image textBoxImage, nameBoxImage;
     public Text mainText, nameText;
+    public float textBoxAlpha = 0.5f;
     public float animationTime = 0.2f, pauseTime = 0.2f, textCharTime = 0.04f;
     private Canvas canvas;
     private bool inputNext;
 
+    [Header("Choice")]
+    public Transform choiceTransform;
+    public ChoiceButton choiceButtonPrefab;
+    public GameEvent lockCursorEvent, unlockCursorEvent;
+
     [Header("State Event")]
     public StateChangeEvent stateChangeEvent;
+
 
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
+        SetVisible(false);
     }
 
     private void Update()
@@ -49,7 +57,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (stateChangeEvent.ChangeState(GameState.Event))
         {
-            DialogueAction[] actions = DialogueAction.Parse(dialogueEvent.DialogueAsset.text);
+            DialogueAction[] actions = DialogueAction.Parse(dialogueEvent.Dialogue.dialogue.text);
             StartCoroutine(PlayDialogueActions(actions));
         }
     }
@@ -57,16 +65,24 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator PlayDialogueActions(DialogueAction[] actions)
     {
         yield return AnimateUI(0, 1);
+        yield return PlayDialogueActionsOnly(actions);
+        yield return AnimateUI(1, 0);
+        stateChangeEvent.ChangeState(GameState.Idle);
+    }
 
-        for(int i = 0; i < actions.Length; i++)
+    private IEnumerator PlayDialogueActionsOnly(DialogueAction[] actions)
+    {
+        for (int i = 0; i < actions.Length; i++)
         {
-            if(actions[i] != null)
+            if (actions[i] != null)
             {
                 yield return actions[i].PlayAction(this);
             }
         }
-        yield return AnimateUI(1, 0);
-        stateChangeEvent.ChangeState(GameState.Idle);
+        if (dialogueEvent.Dialogue.choiceObject)
+        {
+            yield return AnimateChoices(dialogueEvent.Dialogue.choiceObject);
+        }
     }
 
     private IEnumerator AnimateUI(float start, float end)
@@ -83,7 +99,7 @@ public class DialogueManager : MonoBehaviour
             time += Time.deltaTime;
 
             float target = Mathf.Lerp(start, end, time / animationTime);
-            textBoxImage.SetAlpha(target);
+            textBoxImage.SetAlpha(target * textBoxAlpha);
             textBoxImage.transform.localScale = new Vector3(target, target);
             nameBoxImage.SetAlpha(target);
             // nameBoxImage.transform.localScale = new Vector3(target, target);
@@ -153,5 +169,48 @@ public class DialogueManager : MonoBehaviour
         while (!inputNext)
             yield return null;
         yield return null;
+    }
+
+    public IEnumerator AnimateChoices(DialogueChoice choiceObject)
+    {
+        ChoiceStruct[] choices = choiceObject.choices;
+        int choiceCount = choices.Length;
+        ChoiceButton[] buttons = new ChoiceButton[choiceCount];
+        int index = -1;
+
+        for(int i = 0; i < choiceCount; i++)
+        {
+            ChoiceButton button = choiceButtonPrefab.Spawn(choiceTransform);
+            button.text.text = choices[i].choice;
+            buttons[i] = button;
+        }
+
+        // Unlock cursor for choice
+        unlockCursorEvent.Raise();
+
+        while(index < 0)
+        {
+            for(int i = 0; i < choiceCount; i++)
+            {
+                if(buttons[i].clicked)
+                {
+                    index = i;
+                    break;
+                }
+            }
+            yield return null;
+        }
+
+        // Lock cursor again
+        lockCursorEvent.Raise();
+
+        for (int i = 0; i < choiceCount; i++)
+            buttons[i].Recycle();
+
+        // Play following dialogue
+        // TODO: Somehow enable another choice in dialogue?
+        Dialogue nextDialogue = choices[index].dialogue;
+        dialogueEvent.SetDialogue(nextDialogue);
+        yield return PlayDialogueActionsOnly(DialogueAction.Parse(nextDialogue.dialogue.text));
     }
 }

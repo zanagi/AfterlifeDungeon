@@ -64,6 +64,17 @@ MonoBehaviour:
     prefab: {fileID: 8622334345955920051, guid: b86e288df13ef24469cccd9804c7fb28,
       type: 3}
   playerSpawnEvent: {fileID: 11400000, guid: 96786c8c3bc27d34393be70ce3f10c51, type: 2}
+  interactableCountRange:
+    m_Min: 4
+    m_Max: 8
+  interactablePrefabs:
+  - {fileID: 3778870395422128433, guid: 95d7dfc5fa85ae2419c7393521eb81a1, type: 3}
+  enemySpawnEvent: {fileID: 11400000, guid: e736ba94a4813f04695550c33485d3e7, type: 2}
+  enemyCountRange:
+    m_Min: 3
+    m_Max: 3
+  enemyPrefabs:
+  - {fileID: 7583467847206412144, guid: 4dbe53e850c151046a3ad502f7b845d3, type: 3}
 --- !u!114 &1556551352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,6 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleLimit: 80
+  minDistance: 2
 --- !u!1 &7272508615100405060
 GameObject:
   m_ObjectHideFlags: 0

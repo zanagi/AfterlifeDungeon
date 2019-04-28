@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class DialogueAction
 {
     private static StringSplitOptions options = StringSplitOptions.RemoveEmptyEntries;
-    private static readonly string commentPrefix = "#", imagePrefix = "*";
+    private static readonly string commentPrefix = "#", imagePrefix = "*", choicePrefix = "/";
 
     public static DialogueAction[] Parse(string txt)
     {
@@ -32,55 +32,12 @@ public abstract class DialogueAction
         else if (trim.StartsWith(imagePrefix))
         {
             return new DialogueActionSprite(trim.Substring(imagePrefix.Length));
+        } else if(trim.StartsWith(choicePrefix))
+        {
+            return new DialogueActionChoice(trim.Split(new[] { choicePrefix }, options));
         }
         return new DialogueActionText(trim);
     }
 
     public abstract IEnumerator PlayAction(DialogueManager manager);
-}
-
-public class DialogueActionSprite : DialogueAction
-{
-    private string spriteName = string.Empty;
-    
-    public DialogueActionSprite(string name)
-    {
-        spriteName = name;
-    }
-
-    public override IEnumerator PlayAction(DialogueManager manager)
-    {
-        yield return manager.AnimateSprite(spriteName);
-    }
-}
-
-public class DialogueActionText : DialogueAction
-{
-    private string text, name;
-    private bool textSet;
-    private const char separator = ';', lineBreak = '^';
-
-    public DialogueActionText(string text, string name)
-    {
-        this.text = text;
-        this.name = name;
-    }
-
-    public DialogueActionText(string line)
-    {
-        var split = line.Split(separator);
-
-        if (split.Length == 1)
-            text = split[0].Trim();
-        else if (split.Length > 1)
-        {
-            name = split[0].Trim();
-            text = split[1].Trim().Replace(lineBreak, '\n');
-        }
-    }
-
-    public override IEnumerator PlayAction(DialogueManager manager)
-    {
-        yield return manager.AnimateText(name, text);
-    }
 }

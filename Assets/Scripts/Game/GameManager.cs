@@ -10,11 +10,23 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     public PlayerSpawnEvent playerSpawnEvent;
     public Player player;
-    
+
+    [Header("Enemy")]
+    public EnemySpawnEvent enemySpawnEvent;
+    private List<EnemySoul> enemies;
+
     public void SpawnPlayer()
     {
-        Debug.Log("Spawning player: " + playerSpawnEvent.PlayerPos);
         player.transform.position = playerSpawnEvent.PlayerPos;
+    }
+
+    public void SpawnEnemy()
+    {
+        if (enemies == null)
+            enemies = new List<EnemySoul>();
+        EnemySoul enemy = Instantiate(enemySpawnEvent.EnemyPrefab);
+        enemy.transform.position = enemySpawnEvent.SpawnPos;
+        enemies.Add(enemy);
     }
 
     public void OnStateChange()

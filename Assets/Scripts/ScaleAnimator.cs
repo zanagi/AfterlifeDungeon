@@ -5,6 +5,7 @@ using UnityEngine;
 public class ScaleAnimator : MonoBehaviour
 {
     public float minScale = 1.0f, maxScale = 2.0f, speed = 5.0f;
+    public StateChangeEvent state;
     private float scale;
 
     // Start is called before the first frame update
@@ -17,6 +18,9 @@ public class ScaleAnimator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (state.CurrentState != GameState.Idle)
+            return;
+
         scale += speed * Time.deltaTime;
         if(scale > maxScale)
         {

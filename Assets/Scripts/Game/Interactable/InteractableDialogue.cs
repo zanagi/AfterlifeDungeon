@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class InteractableDialogue : MonoBehaviour
 {
-    public TextAsset dialogue;
+    public Dialogue dialogue;
     public DialogueEvent dialogueEvent;
 
     public void PlayDialogue()

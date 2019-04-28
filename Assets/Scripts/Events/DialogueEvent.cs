@@ -6,11 +6,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game Event/Dialogue Event")]
 public class DialogueEvent : GameEvent
 {
-    public TextAsset DialogueAsset { get; private set; }
+    public Dialogue Dialogue { get; private set; }
 
-    public void PlayDialogue(TextAsset asset)
+    public void PlayDialogue(Dialogue dialogue)
     {
-        DialogueAsset = asset;
+        Dialogue = dialogue;
         Raise();
+    }
+
+    public void SetDialogue(Dialogue dialogue)
+    {
+        Dialogue = dialogue;
     }
 }
