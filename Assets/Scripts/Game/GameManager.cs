@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     [Header("Game State")]
     public StateChangeEvent stateObject;
 
@@ -14,7 +16,19 @@ public class GameManager : MonoBehaviour
     [Header("Enemy")]
     public EnemySpawnEvent enemySpawnEvent;
     public List<BaseAI> NPCs;
-    
+
+    private void Awake()
+    {
+        if(Instance)
+        {
+            Instance.NPCs = NPCs;
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void SpawnPlayer()
     {
         player.transform.position = playerSpawnEvent.PlayerPos;

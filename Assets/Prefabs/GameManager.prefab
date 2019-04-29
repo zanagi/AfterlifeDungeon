@@ -53,9 +53,7 @@ MonoBehaviour:
   playerSpawnEvent: {fileID: 11400000, guid: 96786c8c3bc27d34393be70ce3f10c51, type: 2}
   player: {fileID: 8628454456529001062}
   enemySpawnEvent: {fileID: 11400000, guid: e736ba94a4813f04695550c33485d3e7, type: 2}
-  NPCs:
-  - {fileID: 0}
-  - {fileID: 0}
+  NPCs: []
 --- !u!114 &7441190071228524279
 MonoBehaviour:
   m_ObjectHideFlags: 0

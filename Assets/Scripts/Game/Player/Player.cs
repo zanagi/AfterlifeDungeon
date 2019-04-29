@@ -5,10 +5,15 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public ContactEvent contactEvent;
+    public Stats stats;
 
     [HideInInspector]
     public Interactable lastInteractable;
     private PlayerComponent[] components;
+
+    [Header("Game Over")]
+    public LoadEvent loadEvent;
+    public string gameOverScene;
 
     private void Start()
     {
@@ -49,10 +54,20 @@ public class Player : MonoBehaviour
 
     public void ClearLastInteractable(Interactable interactable)
     {
-        if (lastInteractable == interactable)
+        if (lastInteractable == interactable || interactable == null)
         {
             lastInteractable = null;
             contactEvent.OnContact(string.Empty);
+        }
+    }
+
+    public void PayHealth(int amount)
+    {
+        stats.PayHealth(amount);
+
+        if(stats.hp <= 0)
+        {
+            loadEvent.LoadScene(gameOverScene);
         }
     }
 }

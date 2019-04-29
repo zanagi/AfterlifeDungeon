@@ -5,12 +5,13 @@
     // Level 1
     Level1_FightA = 1,
     Level1_FightB = 2,
-    Level1_PortalEnd = 3,
+    Level1_FightB_Pay = 3,
+    Level1_PortalEnd = 4,
 
     // Intro
-    IntroA = 4,
-    IntroB = 5,
-    IntroC = 6,
+    IntroA = 7,
+    IntroB = 8,
+    IntroC = 9,
 
     // Intro2
     Intro2_1 = 101,

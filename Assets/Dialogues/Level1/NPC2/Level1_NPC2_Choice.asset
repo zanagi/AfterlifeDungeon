@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level1_NPC2_Choice
   m_EditorClassIdentifier: 
   choices:
-  - choice: Pay 20 Life
+  - choice: Pay 10 Life
     dialogue: {fileID: 11400000, guid: b670c4afca4bff74780cc999eb6cb4cf, type: 2}
   - choice: Refuse
     dialogue: {fileID: 11400000, guid: f6f18b019cb553d4cb3dafad871282b0, type: 2}

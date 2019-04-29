@@ -604,6 +604,8 @@ MonoBehaviour:
   combatEvent: {fileID: 11400000, guid: b908cec797c6db445acb4a4e514b9dc1, type: 2}
   enemyGroupA: {fileID: 11400000, guid: 123989325034c5f4691c5de6d6620601, type: 2}
   enemyGroupB: {fileID: 11400000, guid: 123989325034c5f4691c5de6d6620601, type: 2}
+  enemyA: {fileID: 960839288}
+  enemyB: {fileID: 661658607}
 --- !u!4 &93365299
 Transform:
   m_ObjectHideFlags: 0
@@ -10586,15 +10588,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7441190071228524278, guid: e35a46f1f219a3a4cade9e0e1f10bc63,
-        type: 3}
-      propertyPath: NPCs.Array.data[0]
-      value: 
-      objectReference: {fileID: 960839293}
-    - target: {fileID: 7441190071228524278, guid: e35a46f1f219a3a4cade9e0e1f10bc63,
-        type: 3}
-      propertyPath: NPCs.Array.data[1]
-      value: 
-      objectReference: {fileID: 661658612}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e35a46f1f219a3a4cade9e0e1f10bc63, type: 3}

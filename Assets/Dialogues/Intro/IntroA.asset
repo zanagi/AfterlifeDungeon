@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue: {fileID: 4900000, guid: 2eb9f8071f19e27439176669f57186c1, type: 3}
   choiceObject: {fileID: 0}
-  endScenario: 4
+  endScenario: 7

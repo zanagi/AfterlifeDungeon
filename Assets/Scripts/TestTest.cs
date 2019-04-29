@@ -16,7 +16,7 @@ public class TestTest : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            combatEvent.StartCombat(enemyGroup);
+            combatEvent.StartCombat(enemyGroup, null);
         }
     }
 }

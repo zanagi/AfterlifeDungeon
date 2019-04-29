@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    [Header("Interact/Contact")]
     public Text interactText;
     public float animationTime = 1.0f;
     public ContactEvent contactEvent;
 
+    [Header("Life Bar")]
+    public Lifebar lifebar;
+    private Player player;
+
     private void Start()
     {
         interactText.SetAlpha(0);
+        player = GetComponentInParent<GameManager>().player;
+
+        lifebar.SetStats(player.stats);
     }
 
     public void SetInteractText()

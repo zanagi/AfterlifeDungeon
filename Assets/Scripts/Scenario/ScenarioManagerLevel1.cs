@@ -5,16 +5,21 @@ using UnityEngine;
 public class ScenarioManagerLevel1 : ScenarioManager
 {
     public EnemyGroup enemyGroupA, enemyGroupB;
+    public GameObject enemyA, enemyB;
 
     public override void PlayScenario(Scenario scenario)
     {
         switch(scenario)
         {
             case Scenario.Level1_FightA:
-                combatEvent.StartCombat(enemyGroupA);
+                combatEvent.StartCombat(enemyGroupA, enemyA);
                 break;
             case Scenario.Level1_FightB:
-                combatEvent.StartCombat(enemyGroupB);
+                combatEvent.StartCombat(enemyGroupB, enemyB);
+                break;
+            case Scenario.Level1_FightB_Pay:
+                GameManager.Instance.player.PayHealth(10);
+                combatEvent.StartCombat(enemyGroupB, enemyB);
                 break;
         }
     }

@@ -79,7 +79,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contactEvent: {fileID: 11400000, guid: 9cc6fdaeda19da540bd4201fc12e21ce, type: 2}
+  stats:
+    sprite: {fileID: 21300000, guid: b642b2fb0429f5a448b1bebf00d782ba, type: 3}
+    skills:
+    - {fileID: 11400000, guid: 0de29ce1509f7194caf3538b6d0d93b0, type: 2}
+    level: 1
+    exp: 0
+    nextLvlExp: 10
+    hp: 50
+    maxHp: 50
+    strength: 5
+    vitality: 5
+    intelligence: 5
+    agility: 5
   lastInteractable: {fileID: 0}
+  loadEvent: {fileID: 11400000, guid: 6278679fd5a43f14eae8bbb341297a4d, type: 2}
+  gameOverScene: GameOver
 --- !u!114 &7124257589270129294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -478,6 +493,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPerSecond: {x: 1, y: 0, z: 0}
+  randomize: 0
 --- !u!1 &8226694801168555079
 GameObject:
   m_ObjectHideFlags: 0

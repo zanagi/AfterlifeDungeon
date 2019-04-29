@@ -6,10 +6,12 @@ using UnityEngine;
 public class CombatEvent : GameEvent
 {
     public EnemyGroup EnemyGroup { get; private set; }
+    public GameObject EnemyObject { get; private set; }
 
-    public void StartCombat(EnemyGroup enemyGroup)
+    public void StartCombat(EnemyGroup enemyGroup, GameObject enemyObject)
     {
         EnemyGroup = enemyGroup;
+        EnemyObject = enemyObject;
         Raise();
     }
 }
