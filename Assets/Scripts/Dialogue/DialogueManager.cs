@@ -49,7 +49,8 @@ public class DialogueManager : MonoBehaviour
     public void SetVisible(bool visible)
     {
         canvas.enabled = visible;
-        
+
+
         if (!visible)
             EmptyUI();
     }
@@ -57,6 +58,7 @@ public class DialogueManager : MonoBehaviour
     private void EmptyUI()
     {
         mainText.text = nameText.text = string.Empty;
+        mainImage.sprite = emptySprite;
         mainImage.enabled = false;
     }
 
@@ -117,7 +119,7 @@ public class DialogueManager : MonoBehaviour
         float time = 0.0f;
         while(time <= animationTime)
         {
-            time += Time.fixedDeltaTime;
+            time += Time.deltaTime;
 
             float target = Mathf.Lerp(start, end, time / animationTime);
             textBoxImage.SetAlpha(target * textBoxAlpha);
@@ -127,7 +129,7 @@ public class DialogueManager : MonoBehaviour
 
             if (mainImage.enabled)
                 mainImage.SetAlpha(target);
-            yield return new WaitForFixedUpdate();
+            yield return null;
         }
 
         if (end <= 0)
@@ -154,10 +156,13 @@ public class DialogueManager : MonoBehaviour
         float time = 0.0f;
         while (time <= animationTime)
         {
-            time += Time.fixedDeltaTime;
-            mainImage.SetAlpha(Mathf.Lerp(a, b, time / animationTime));
-            yield return new WaitForFixedUpdate();
+            time += Time.deltaTime;
+
+            float alpha = Mathf.Lerp(a, b, time / animationTime);
+            mainImage.GetComponent<CanvasGroup>().alpha = alpha;
+            yield return null;
         }
+        yield return null;
     }
 
     private Sprite GetSprite(string spriteName)

@@ -352,6 +352,7 @@ GameObject:
   - component: {fileID: 1531801263}
   - component: {fileID: 1531801265}
   - component: {fileID: 1531801264}
+  - component: {fileID: 8949511156300510119}
   m_Layer: 0
   m_Name: MainImage
   m_TagString: Untagged
@@ -415,6 +416,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!225 &8949511156300510119
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1531801262}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &5462666518219327129
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +902,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8644859174828245612}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

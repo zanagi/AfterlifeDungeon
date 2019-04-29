@@ -5,23 +5,21 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     public LoadEvent loadEvent;
-    public DialogueEvent dialogueEvent;
-    public Dialogue testDial;
-    public string sceneName = "Menu";
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string sceneName = "Level1";
+    public float delay = 0.5f;
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (delay > 0)
         {
-            // loadEvent.LoadScene(sceneName);
-            dialogueEvent.PlayDialogue(testDial);
+            delay -= Time.deltaTime;
+            return;
+        }
+
+        if(Input.anyKeyDown)
+        {
+            loadEvent.LoadScene(sceneName);
         } 
     }
 }

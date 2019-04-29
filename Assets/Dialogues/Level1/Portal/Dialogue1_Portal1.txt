@@ -1,3 +1,4 @@
+*VN_Clown_Small
 A clown-like spirit is blocking your way.
 *VN_Clown
 Clown Spirit; Kyeh kyeh kyeh! Sorry newbie! This place is off-limits right now.
