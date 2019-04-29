@@ -12,6 +12,7 @@ public class CurveAnimator : MonoBehaviour
     private void Start()
     {
         startPos = transform.localPosition;
+        currentTime = Random.Range(0, animationLength);
     }
 
     void Update()
