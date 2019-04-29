@@ -27,6 +27,7 @@ public class CombatManager : MonoBehaviour
     [Header("Combat - Raycast")]
     public Camera combatCamera;
     public LayerMask enemyLayer;
+    public float cameraCloseDistance = 0.5f, closeInTime = 0.1f;
     private Skill activeSkill;
 
     [Header("Audio")]
@@ -244,11 +245,36 @@ public class CombatManager : MonoBehaviour
 
     private IEnumerator _AnimateAttackCamera(Transform targetTransform, bool screenSpace = false)
     {
+        Vector3 startPos = combatCamera.transform.position;
+        Vector3 targetPos = targetTransform.position - Vector3.forward * cameraCloseDistance;
+
+        float time = 0f;
+        if (!screenSpace)
+        {
+            while (time < closeInTime)
+            {
+                time += Time.deltaTime;
+                combatCamera.transform.position = Vector3.Slerp(startPos, targetPos, time / closeInTime);
+                yield return null;
+            }
+        }
+
         // Play hit effect
         hitEffect.gameObject.SetActive(true);
         hitEvent.Raise();
         yield return hitEffect._Play(combatCamera, targetTransform, screenSpace);
         hitEffect.gameObject.SetActive(false);
+        
+        if (!screenSpace)
+        {
+            time = 0f;
+            while (time < closeInTime)
+            {
+                time += Time.deltaTime;
+                combatCamera.transform.position = Vector3.Slerp(targetPos, startPos, time / closeInTime);
+                yield return null;
+            }
+        }
     }
 
     private List<Enemy> InitEnemies()
