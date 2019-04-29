@@ -602,6 +602,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatEvent: {fileID: 11400000, guid: b908cec797c6db445acb4a4e514b9dc1, type: 2}
+  enemyGroupA: {fileID: 0}
+  enemyGroupB: {fileID: 0}
 --- !u!4 &93365299
 Transform:
   m_ObjectHideFlags: 0
@@ -6417,24 +6419,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1288326663}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1302923387 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2173230987516633885, guid: e35a46f1f219a3a4cade9e0e1f10bc63,
-    type: 3}
-  m_PrefabInstance: {fileID: 7441190070424287342}
-  m_PrefabAsset: {fileID: 0}
---- !u!225 &1302923388
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302923387}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1001 &1309668732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10693,10 +10677,5 @@ PrefabInstance:
       propertyPath: NPCs.Array.data[1]
       value: 
       objectReference: {fileID: 661658612}
-    - target: {fileID: 6290856971973810576, guid: e35a46f1f219a3a4cade9e0e1f10bc63,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -540
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e35a46f1f219a3a4cade9e0e1f10bc63, type: 3}

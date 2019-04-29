@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public struct Stats
 {
     public int hp, maxHp;
-    public int mp, maxMp;
-    public int strength, vitality, intelligence;
+    public int strength, vitality, intelligence, agility;
 }

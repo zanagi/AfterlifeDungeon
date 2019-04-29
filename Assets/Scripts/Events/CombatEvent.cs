@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Game Event/Combat/Combatx Event")]
+[CreateAssetMenu(menuName = "Game Event/Combat/Combat Event")]
 public class CombatEvent : GameEvent
 {
-    public void StartCombat()
+    public EnemyGroup EnemyGroup { get; private set; }
+
+    public void StartCombat(EnemyGroup enemyGroup)
     {
+        EnemyGroup = enemyGroup;
         Raise();
     }
 }
