@@ -33,6 +33,8 @@ public class DialogueManager : MonoBehaviour
     [Header("State Event")]
     public StateChangeEvent stateChangeEvent;
 
+    [Header("Audio")]
+    public GameEvent dialogueNextEvent;
 
     private void Awake()
     {
@@ -203,6 +205,7 @@ public class DialogueManager : MonoBehaviour
 
         while (!inputNext)
             yield return null;
+        dialogueNextEvent.Raise();
         yield return null;
     }
 
