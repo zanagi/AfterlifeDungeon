@@ -28,6 +28,7 @@ public class CombatManager : MonoBehaviour
     public Camera combatCamera;
     public LayerMask enemyLayer;
     public float cameraCloseDistance = 0.5f, closeInTime = 0.1f;
+    public DungeonCameraEvent cameraEvent;
     private Skill activeSkill;
 
     [Header("Audio")]
@@ -58,6 +59,12 @@ public class CombatManager : MonoBehaviour
         }
         combatUI.SetActive(false);
         hitEffect.gameObject.SetActive(false);
+    }
+
+    public void SetCamera()
+    {
+        // Set whole manager instead :P
+        transform.position = cameraEvent.CameraPos;
     }
 
     public void StartCombat()
@@ -104,6 +111,7 @@ public class CombatManager : MonoBehaviour
             yield return PlayTurn(enemies);
             yield return new WaitForSecondsRealtime(turnPause);
             yield return EnemyTurn(enemies);
+            yield return new WaitForSecondsRealtime(turnPause);
         }
 
         // End
@@ -187,6 +195,7 @@ public class CombatManager : MonoBehaviour
                 }
                 PartyMemberPanel panel = partyPanels[Random.Range(0, playerCount)];
                 skill.OnUse(stats, panel);
+                descriptionPanel.SetDescription(skill.description);
                 yield return _AnimateAttackCamera(panel.transform, true);
                 CheckPlayers();
             }
@@ -215,7 +224,7 @@ public class CombatManager : MonoBehaviour
             {
                 if (i == 0)
                 {
-                    loadEvent.LoadScene(gameOverScene);
+                    GameOver();
                 }
                 else
                 {
@@ -314,5 +323,10 @@ public class CombatManager : MonoBehaviour
         // Play damage text
         DamageText damageText = damageTextPrefab.Spawn(uiTop);
         damageText.Play(damageEvent.Damage, combatCamera, damageEvent.Target, damageEvent.IsScreenSpace);
+    }
+
+    private void GameOver()
+    {
+        loadEvent.LoadScene(gameOverScene);
     }
 }

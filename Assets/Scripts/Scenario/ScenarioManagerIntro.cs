@@ -30,6 +30,7 @@ public class ScenarioManagerIntro : ScenarioManager
     private void Start()
     {
         blackScreen.gameObject.SetActive(true);
+        Debug.Log("Play dialogue");
         dialogueEvent.PlayDialogue(dialogueA);
     }
 

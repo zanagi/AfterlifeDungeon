@@ -74,7 +74,10 @@ MonoBehaviour:
     m_Min: 3
     m_Max: 3
   enemyPrefabs:
-  - {fileID: 7840211172500706040, guid: 4dbe53e850c151046a3ad502f7b845d3, type: 3}
+  - {fileID: 2279979200806260792, guid: 4dbe53e850c151046a3ad502f7b845d3, type: 3}
+  portal: {fileID: 4518102055494386997, guid: 2e5ef7afe0abdbf4aa8fa871d0f26d15, type: 3}
+  cameraEvent: {fileID: 11400000, guid: ae403292e6fdaf44ab61548658d7d9f7, type: 2}
+  nextLevel: 
 --- !u!114 &1556551352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angleLimit: 80
   minDistance: 2
+  state: {fileID: 11400000, guid: 9d0afb722137b7c47b960bc8ce996dce, type: 2}
 --- !u!1 &7272508615100405060
 GameObject:
   m_ObjectHideFlags: 0

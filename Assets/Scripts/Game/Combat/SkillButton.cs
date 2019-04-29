@@ -12,7 +12,7 @@ public class SkillButton : MonoBehaviour
     private PartyMemberPanel partyPanel;
     private Outline outline;
 
-    private void Start()
+    private void Awake()
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(() => SelectButton());

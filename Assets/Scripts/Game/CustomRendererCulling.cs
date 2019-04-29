@@ -6,6 +6,7 @@ public class CustomRendererCulling : MonoBehaviour
 {
     public float angleLimit = 90;
     public float minDistance = 2;
+    public StateChangeEvent state;
     private float minDistanceSqr;
     private Camera mainCamera;
     private Renderer[] renderers;
@@ -35,7 +36,14 @@ public class CustomRendererCulling : MonoBehaviour
             cameraDelta.y = 0;
             float angle = Vector3.Angle(cameraDir, cameraDelta);
 
-            renderers[i].enabled = angle <= angleLimit || Vector3.SqrMagnitude(cameraPos - targetPos) <= minDistanceSqr;
+            if (state.CurrentState == GameState.Combat)
+            {
+                renderers[i].enabled = true;
+            }
+            else
+            {
+                renderers[i].enabled = angle <= angleLimit || Vector3.SqrMagnitude(cameraPos - targetPos) <= minDistanceSqr;
+            }
         }
     }
 }

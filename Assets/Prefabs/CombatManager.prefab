@@ -723,7 +723,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 2049
+    m_Bits: 4097
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -816,6 +816,7 @@ GameObject:
   - component: {fileID: 4905885236809155901}
   - component: {fileID: 6960814070838648258}
   - component: {fileID: 6359044880298424510}
+  - component: {fileID: 4793842619624687217}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -863,7 +864,7 @@ MonoBehaviour:
   cursorUnlockEvent: {fileID: 11400000, guid: 349e8b0c40bb1df4aae718a646346166, type: 2}
   enemySpacing: 1
   enemyDistance: 2
-  turnPause: 0.5
+  turnPause: 0.3
   descriptionPanel: {fileID: 1921046595}
   skillSelectEvent: {fileID: 11400000, guid: 0ade5ef5dfafc774b8d4f00a03df365e, type: 2}
   hitEffect: {fileID: 1200251470}
@@ -874,7 +875,10 @@ MonoBehaviour:
   combatCamera: {fileID: 3599684231548671558}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4096
+  cameraCloseDistance: 0.5
+  closeInTime: 0.1
+  cameraEvent: {fileID: 11400000, guid: ae403292e6fdaf44ab61548658d7d9f7, type: 2}
   bgmEvent: {fileID: 11400000, guid: f55e36de83f31af4fb2485e94cf0202c, type: 2}
   bgmRollbackEvent: {fileID: 11400000, guid: b803151e14320994cb4adc9de0561c11, type: 2}
   hitEvent: {fileID: 11400000, guid: ffe824a2d97789e4193d38cac557994d, type: 2}
@@ -969,6 +973,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6774994003596959499}
         m_MethodName: ShowDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &4793842619624687217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7046630937692707830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c7195cee1422d458c8dc7b616aaca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: ae403292e6fdaf44ab61548658d7d9f7, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6774994003596959499}
+        m_MethodName: SetCamera
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/4_RecruitTutorial.unity
     guid: 4da912eba905a20419b0ee95a5ea550a
   - enabled: 1
-    path: Assets/Scenes/Game.unity
+    path: Assets/Scenes/Dungeon1.unity
     guid: 3e34b2ba208ebe944a7cd160c2da92c3
   - enabled: 1
     path: Assets/Scenes/GameOver.unity

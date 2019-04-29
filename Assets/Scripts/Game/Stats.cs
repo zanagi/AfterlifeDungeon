@@ -64,8 +64,8 @@ public class Stats
             nextLvlExp = 10 * level;
 
             // Stats:
-            hp += 10;
             maxHp += 10;
+            hp = maxHp;
         }
     }
 }

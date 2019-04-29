@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba16eb02210339648b0f21779b6bd303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  combatEvent: {fileID: 11400000, guid: b908cec797c6db445acb4a4e514b9dc1, type: 2}
 --- !u!135 &8102702682330234587
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -68,8 +69,8 @@ GameObject:
   - component: {fileID: 7810841934012982406}
   - component: {fileID: 1122394657465742619}
   - component: {fileID: 7583467847206412144}
-  - component: {fileID: 7840211172500706040}
   - component: {fileID: 2381676467791602690}
+  - component: {fileID: 2279979200806260792}
   m_Layer: 11
   m_Name: Enemy (Soul)
   m_TagString: Untagged
@@ -120,22 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09e4619318ec09438b5f72a10cff02f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7840211172500706040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7810841934012982405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f9d84679ec5674a89c0db9e8807006, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wanderRadius: 3
-  speed: 1
-  maxWanderTime: 5
-  pauseTime: 2
+  enemyGroups:
+  - {fileID: 11400000, guid: 123989325034c5f4691c5de6d6620601, type: 2}
+  - {fileID: 11400000, guid: 04e3929aef89311499275036f4d208c8, type: 2}
+  - {fileID: 11400000, guid: 9099bc161a59b154694988d567b2ebfe, type: 2}
 --- !u!114 &2381676467791602690
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +191,23 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   state: {fileID: 11400000, guid: 9d0afb722137b7c47b960bc8ce996dce, type: 2}
+--- !u!114 &2279979200806260792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7810841934012982405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c7a17f78bb88a04a869b1a35792b8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wanderRadius: 3
+  speed: 1
+  maxWanderTime: 5
+  pauseTime: 2
+  range: 6
 --- !u!1 &7810841934065169763
 GameObject:
   m_ObjectHideFlags: 0

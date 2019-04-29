@@ -19,4 +19,4 @@ MonoBehaviour:
   attribute: 0
   isAoe: 0
   damageEvent: {fileID: 11400000, guid: edabd81a822533544ad3baa57d036741, type: 2}
-  description: 
+  description: Enemy uses Bash!

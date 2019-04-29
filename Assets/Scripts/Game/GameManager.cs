@@ -56,8 +56,12 @@ public class GameManager : MonoBehaviour
         if (stateObject.CurrentState != GameState.Idle)
             return;
 
-        for (int i = 0; i < NPCs.Count; i++)
+        for (int i = NPCs.Count - 1; i >= 0; i--)
+        {
+            if (!NPCs[i])
+                NPCs.RemoveAt(i); ;
             NPCs[i].HandleUpdate(player);
+        }
         player.HandleUpdate();
     }
 
@@ -66,8 +70,12 @@ public class GameManager : MonoBehaviour
         if (stateObject.CurrentState != GameState.Idle)
             return;
 
-        for (int i = 0; i < NPCs.Count; i++)
+        for (int i = NPCs.Count - 1; i >= 0; i--)
+        {
+            if (!NPCs[i])
+                NPCs.RemoveAt(i);
             NPCs[i].HandleFixedUpdate(player);
+        }
         player.HandleFixedUpdate();
     }
 }

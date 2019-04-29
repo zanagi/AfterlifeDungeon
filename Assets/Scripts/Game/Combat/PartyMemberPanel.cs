@@ -19,7 +19,7 @@ public class PartyMemberPanel : MonoBehaviour
     private CanvasGroup canvasGroup;
     private CombatManager manager;
 
-    private void Start()
+    private void Awake()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         manager = GetComponentInParent<CombatManager>();

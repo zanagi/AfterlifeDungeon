@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4501984803885113564}
   - component: {fileID: 7734060531692147962}
   - component: {fileID: 2465367420092986891}
-  m_Layer: 11
-  m_Name: Enemy (AngrySpirit)
+  m_Layer: 12
+  m_Name: Sad Soul
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,17 +45,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189149776dc9afb4cba7f1cce09767ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyName: Furious Soul
   stats:
-    sprite: {fileID: 21300000, guid: 95296842201a3a745b39a653f60ab4b3, type: 3}
+    sprite: {fileID: 21300000, guid: 485410bf182da3e41aed1a7c13d3a4df, type: 3}
     skills:
     - {fileID: 11400000, guid: 860550d9e724d9a45b93daa70be6e9f1, type: 2}
     level: 0
-    exp: 5
+    exp: 12
     nextLvlExp: 0
-    hp: 20
-    maxHp: 20
+    hp: 30
+    maxHp: 30
     strength: 4
-    vitality: 2
+    vitality: 4
     intelligence: 2
     agility: 2
   spriteTransform: {fileID: 2750852276070673257}
@@ -71,8 +72,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be4d5cb540c49da4384163f2b5cd40d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationLength: 0.4
-  animationStrength: 0.1
+  animationLength: 1
+  animationStrength: 0.2
   xCurve:
     serializedVersion: 2
     m_Curve:
@@ -86,28 +87,10 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.2
-      value: 0
-      inSlope: 0.8333333
-      outSlope: 0.8333333
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8
-      value: 1
-      inSlope: -1.666667
-      outSlope: -1.666667
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -5.0000005
-      outSlope: -5.0000005
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -121,35 +104,44 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 4
+      outSlope: 4
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.2
-      value: 0
-      inSlope: 0.8333333
-      outSlope: 0.8333333
+      time: 0.25
+      value: 1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.8
-      value: 1
-      inSlope: -1.666667
-      outSlope: -1.666667
-      tangentMode: 34
+      time: 0.5
+      value: 0
+      inSlope: -5.9772
+      outSlope: -5.9772
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.9
+      outWeight: 0.45806503
+    - serializedVersion: 3
+      time: 0.75
+      value: -1
+      inSlope: 0.04929899
+      outSlope: 0.04929899
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 1
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -5.0000005
-      outSlope: -5.0000005
+      inSlope: 4
+      outSlope: 4
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -168,7 +160,7 @@ GameObject:
   - component: {fileID: 2750852276070673257}
   - component: {fileID: 3410088123169738314}
   - component: {fileID: 8317292095621724436}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -226,7 +218,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 95296842201a3a745b39a653f60ab4b3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 485410bf182da3e41aed1a7c13d3a4df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -5,8 +5,16 @@ using UnityEngine;
 public class Test : MonoBehaviour
 {
     public LoadEvent loadEvent;
+    public StateChangeEvent state;
     public string sceneName = "Level1";
     public float delay = 0.5f;
+
+    private void Awake()
+    {
+        if (GameManager.Instance)
+            Destroy(GameManager.Instance.gameObject);
+        state.ChangeState(GameState.Idle);
+    }
 
     // Update is called once per frame
     void Update()

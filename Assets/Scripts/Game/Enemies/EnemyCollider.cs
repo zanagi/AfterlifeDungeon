@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyCollider : MonoBehaviour
 {
+    public CombatEvent combatEvent;
     private EnemySoul enemy;
 
     // Start is called before the first frame update
@@ -18,7 +19,7 @@ public class EnemyCollider : MonoBehaviour
         
         if (player)
         {
-            Debug.Log("Enemy hit");
+            combatEvent.StartCombat(enemy.enemyGroups.GetRandom(), enemy.gameObject);
         }
     }
 }

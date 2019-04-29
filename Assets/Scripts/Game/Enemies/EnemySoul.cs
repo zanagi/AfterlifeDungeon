@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySoul : MonoBehaviour
 {
+    public EnemyGroup[] enemyGroups;
     private BaseAI ai;
 
     // Start is called before the first frame update

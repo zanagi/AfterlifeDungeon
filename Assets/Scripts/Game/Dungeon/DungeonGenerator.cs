@@ -29,6 +29,11 @@ public class DungeonGenerator : MonoBehaviour
     public IntRange enemyCountRange;
     public BaseAI[] enemyPrefabs;
 
+    [Header("Other")]
+    public LevelPortal portal;
+    public DungeonCameraEvent cameraEvent;
+    public string nextLevel;
+
     private void Start()
     {
         GenerateDungeon();
@@ -78,6 +83,14 @@ public class DungeonGenerator : MonoBehaviour
     {
         Room spawnRoom = Static.GetRandom(rooms);
         playerSpawnEvent.Spawn(new Vector3(spawnRoom.RandomX, 0, spawnRoom.RandomY));
+
+        // Spawn portal
+        Room portalRoom = rooms.GetRandom();
+        portal.Spawn(new Vector3(portalRoom.RandomX, 0, portalRoom.RandomY));
+        portal.nextLevel = nextLevel;
+
+        // Combat camera
+        cameraEvent.SetCamera(new Vector3(portalRoom.x + portalRoom.width / 2, 0, portalRoom.y + portalRoom.height / 2));
     }
 
     private void SpawnInteractables(Room[] rooms)
