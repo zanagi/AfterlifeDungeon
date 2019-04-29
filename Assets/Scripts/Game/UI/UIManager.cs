@@ -9,10 +9,14 @@ public class UIManager : MonoBehaviour
     public float animationTime = 1.0f;
     public ContactEvent contactEvent;
 
+    private void Start()
+    {
+        interactText.SetAlpha(0);
+    }
+
     public void SetInteractText()
     {
         string text = contactEvent.InteractText;
-
         // Animate text
         StopAllCoroutines();
         
@@ -30,7 +34,7 @@ public class UIManager : MonoBehaviour
     {
         if (targetAlpha >= 0)
             interactText.enabled = true;
-
+        
         float time = 0.0f;
         float currentAlpha = interactText.color.a;
 

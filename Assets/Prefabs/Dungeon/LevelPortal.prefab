@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4147964001134173135}
   - component: {fileID: 1112338210769318433}
   - component: {fileID: 1282131020294980812}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4147964001519844896}
   - component: {fileID: 4518102055494386997}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LevelPortal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -182,3 +182,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextLevel: Level2
   loadEvent: {fileID: 11400000, guid: 6278679fd5a43f14eae8bbb341297a4d, type: 2}
+  blockDialogue: {fileID: 0}
+  dialogueEvent: {fileID: 0}
