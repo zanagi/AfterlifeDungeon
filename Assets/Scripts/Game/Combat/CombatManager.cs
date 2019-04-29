@@ -21,6 +21,8 @@ public class CombatManager : MonoBehaviour
     public SkillSelectEvent skillSelectEvent;
     public HitEffect hitEffect;
     public DamageText damageTextPrefab;
+    public Transform uiTop;
+    public DamageEvent damageEvent;
 
     [Header("Combat - Raycast")]
     public Camera combatCamera;
@@ -187,8 +189,6 @@ public class CombatManager : MonoBehaviour
         hitEvent.Raise();
         yield return hitEffect._Play(combatCamera, enemy.spriteTransform.transform);
         hitEffect.gameObject.SetActive(false);
-
-        // Play damage text
     }
 
     private List<Enemy> InitEnemies()
@@ -225,6 +225,8 @@ public class CombatManager : MonoBehaviour
 
     public void ShowDamage()
     {
-
+        // Play damage text
+        DamageText damageText = damageTextPrefab.Spawn(uiTop);
+        damageText.Play(damageEvent.Damage, combatCamera, damageEvent.Target);
     }
 }

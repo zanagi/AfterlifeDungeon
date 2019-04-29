@@ -17,4 +17,6 @@ MonoBehaviour:
   power: 5
   type: 4
   attribute: 0
+  isAoe: 0
+  damageEvent: {fileID: 11400000, guid: edabd81a822533544ad3baa57d036741, type: 2}
   description: 'A basic attack   Power: 5    Physical'

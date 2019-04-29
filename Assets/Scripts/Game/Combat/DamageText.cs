@@ -6,10 +6,19 @@ using UnityEngine.UI;
 public class DamageText : MonoBehaviour
 {
     public float animTime = 0.2f, pauseTime = 0.5f;
+    private Text text;
 
-    public IEnumerator _Play(int damage)
+    public void Play(int damage, Camera combatCamera, Transform targetTransform)
     {
-        GetComponent<Text>().text = damage.ToString();
+        if (!text)
+            text = GetComponent<Text>();
+        text.text = string.Empty;
+        StartCoroutine(_Play(damage, combatCamera, targetTransform));
+    }
+
+    public IEnumerator _Play(int damage, Camera combatCamera, Transform targetTransform)
+    {
+        text.text = damage.ToString();
 
         Vector3 targetScale = Vector3.one;
         Vector3 startScale = Vector3.zero;
@@ -20,8 +29,10 @@ public class DamageText : MonoBehaviour
         {
             time += Time.deltaTime;
             transform.localScale = Vector3.Lerp(startScale, targetScale, time / animTime);
+            transform.position = combatCamera.WorldToScreenPoint(targetTransform.position);
             yield return null;
         }
+        yield return new WaitForSecondsRealtime(pauseTime);
         time = 0f;
         while (time < animTime)
         {
@@ -29,5 +40,6 @@ public class DamageText : MonoBehaviour
             transform.localScale = Vector3.Lerp(targetScale, startScale, time / animTime);
             yield return null;
         }
+        gameObject.Recycle();
     }
 }

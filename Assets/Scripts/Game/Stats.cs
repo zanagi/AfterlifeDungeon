@@ -40,11 +40,12 @@ public class Stats
         get { return (float)hp / Mathf.Max(1, maxHp); }
     }
 
-    public void TakeDamage(int power)
+    public int TakeDamage(int power)
     {
         int damage = (power - vitality);
         damage = Mathf.Max(1, Random.Range(damage / 2, damage));
         hp -= damage;
+        return damage;
     }
 
     public void PayHealth(int amount)
