@@ -7,4 +7,5 @@ public class Dialogue : ScriptableObject
 {
     public TextAsset dialogue;
     public DialogueChoice choiceObject;
+    public Scenario endScenario;
 }

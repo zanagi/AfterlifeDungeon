@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public enum DialogueAnimMode
 {
@@ -17,6 +18,7 @@ public class DialogueManager : MonoBehaviour
     public Image mainImage;
     public Image textBoxImage, nameBoxImage;
     public Text mainText, nameText;
+    public Sprite emptySprite;
     public float textBoxAlpha = 0.5f;
     public float animationTime = 0.2f, pauseTime = 0.2f, textCharTime = 0.04f;
     private Canvas canvas;
@@ -26,6 +28,7 @@ public class DialogueManager : MonoBehaviour
     public Transform choiceTransform;
     public ChoiceButton choiceButtonPrefab;
     public GameEvent lockCursorEvent, unlockCursorEvent;
+    public float choiceWaitTime = 0.2f;
 
     [Header("State Event")]
     public StateChangeEvent stateChangeEvent;
@@ -39,12 +42,16 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        inputNext = Input.GetMouseButtonDown(0);
+        inputNext = CrossPlatformInputManager.GetButtonDown(Static.mouseClickAxis) 
+            || CrossPlatformInputManager.GetButtonDown(Static.submitAxis);
     }
 
     public void SetVisible(bool visible)
     {
         canvas.enabled = visible;
+        
+        if (!visible)
+            EmptyUI();
     }
 
     private void EmptyUI()
@@ -64,10 +71,24 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator PlayDialogueActions(DialogueAction[] actions)
     {
+        // Unlock cursor for choice
+        unlockCursorEvent.Raise();
+
         yield return AnimateUI(0, 1);
         yield return PlayDialogueActionsOnly(actions);
         yield return AnimateUI(1, 0);
+
+        // Lock cursor again
+        lockCursorEvent.Raise();
+
         stateChangeEvent.ChangeState(GameState.Idle);
+
+        // Let scenario manager handle possible end scenarios
+        if (ScenarioManager.Instance)
+        {
+            Scenario endScenario = dialogueEvent.Dialogue.endScenario;
+            ScenarioManager.Instance.PlayScenario(endScenario);
+        }
     }
 
     private IEnumerator PlayDialogueActionsOnly(DialogueAction[] actions)
@@ -81,6 +102,7 @@ public class DialogueManager : MonoBehaviour
         }
         if (dialogueEvent.Dialogue.choiceObject)
         {
+            yield return new WaitForSecondsRealtime(choiceWaitTime);
             yield return AnimateChoices(dialogueEvent.Dialogue.choiceObject);
         }
         yield return null;
@@ -90,14 +112,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (end >= 1)
             SetVisible(true);
-        else
-            EmptyUI();
 
         // Animate the values of UI elements
         float time = 0.0f;
         while(time <= animationTime)
         {
-            time += Time.deltaTime;
+            time += Time.fixedDeltaTime;
 
             float target = Mathf.Lerp(start, end, time / animationTime);
             textBoxImage.SetAlpha(target * textBoxAlpha);
@@ -107,7 +127,7 @@ public class DialogueManager : MonoBehaviour
 
             if (mainImage.enabled)
                 mainImage.SetAlpha(target);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
 
         if (end <= 0)
@@ -117,18 +137,27 @@ public class DialogueManager : MonoBehaviour
 
     public IEnumerator AnimateSprite(string spriteName)
     {
-        mainImage.enabled = true;
-        mainImage.sprite = GetSprite(spriteName);
-
-        float time = 0.0f;
-        while(time <= animationTime)
+        if (mainImage.enabled && mainImage.sprite && mainImage.sprite != emptySprite)
         {
-            time += Time.deltaTime;
-            mainImage.SetAlpha(time / animationTime);
-            yield return null;
+            yield return AnimateSpriteFade(1, 0);
+        } else
+        {
+            mainImage.enabled = true;
         }
-
+        mainImage.sprite = GetSprite(spriteName);
+        yield return AnimateSpriteFade(0, 1);
         yield return null;
+    }
+
+    private IEnumerator AnimateSpriteFade(float a, float b)
+    {
+        float time = 0.0f;
+        while (time <= animationTime)
+        {
+            time += Time.fixedDeltaTime;
+            mainImage.SetAlpha(Mathf.Lerp(a, b, time / animationTime));
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     private Sprite GetSprite(string spriteName)
@@ -138,7 +167,7 @@ public class DialogueManager : MonoBehaviour
             if (sprites[i].name == spriteName)
                 return sprites[i];
         }
-        return null;
+        return emptySprite;
     }
 
     public IEnumerator AnimateText(string name, string text)
@@ -186,9 +215,6 @@ public class DialogueManager : MonoBehaviour
             buttons[i] = button;
         }
 
-        // Unlock cursor for choice
-        unlockCursorEvent.Raise();
-
         while(index < 0)
         {
             for(int i = 0; i < choiceCount; i++)
@@ -201,9 +227,6 @@ public class DialogueManager : MonoBehaviour
             }
             yield return null;
         }
-
-        // Lock cursor again
-        lockCursorEvent.Raise();
 
         for (int i = 0; i < choiceCount; i++)
             buttons[i].Recycle();

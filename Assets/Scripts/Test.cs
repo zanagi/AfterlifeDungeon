@@ -6,6 +6,7 @@ public class Test : MonoBehaviour
 {
     public LoadEvent loadEvent;
     public DialogueEvent dialogueEvent;
+    public Dialogue testDial;
     public string sceneName = "Menu";
 
     // Start is called before the first frame update
@@ -19,7 +20,8 @@ public class Test : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            loadEvent.LoadScene(sceneName);
-        }
+            // loadEvent.LoadScene(sceneName);
+            dialogueEvent.PlayDialogue(testDial);
+        } 
     }
 }

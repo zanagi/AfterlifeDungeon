@@ -9,8 +9,10 @@ public class ScenarioManagerLevel1 : ScenarioManager
         switch(scenario)
         {
             case Scenario.Level1_FightA:
+                combatEvent.StartCombat();
                 break;
             case Scenario.Level1_FightB:
+                combatEvent.StartCombat();
                 break;
         }
     }

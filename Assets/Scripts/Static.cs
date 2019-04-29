@@ -7,7 +7,8 @@ using System.Collections.Generic;
 public static class Static
 {
     public static readonly string horizontalAxis = "Horizontal", verticalAxis = "Vertical",
-        mouseXAxis = "Mouse X", mouseYAxis = "Mouse Y", mouseClickAxis = "Fire1";
+        mouseXAxis = "Mouse X", mouseYAxis = "Mouse Y", mouseClickAxis = "Fire1",
+        submitAxis = "Submit";
 
     public static void SetAlpha(this MaskableGraphic graphics, float alpha)
     {

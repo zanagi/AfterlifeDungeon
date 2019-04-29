@@ -9,12 +9,11 @@ public class StateChangeEvent : GameEvent
 
     public bool ChangeState(GameState newState)
     {
-        Debug.Log("Current state: " + CurrentState);
+        // Ignore same states and transitions to non-idle states (except combat to event above)
         if (CurrentState == newState || (CurrentState != GameState.Idle && newState != GameState.Idle))
             return false;
         CurrentState = newState;
         Raise();
-        Debug.Log("New state: " + newState);
         return true;
     }
 

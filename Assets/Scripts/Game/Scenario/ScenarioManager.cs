@@ -6,6 +6,8 @@ public class ScenarioManager : MonoBehaviour
 {
     public static ScenarioManager Instance { get; private set; }
 
+    public CombatEvent combatEvent;
+
     private void Awake()
     {
         Instance = this;
