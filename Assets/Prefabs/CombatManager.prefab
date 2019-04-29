@@ -217,7 +217,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9eb0bf1861e864d41ba7b1cf275d07ef, type: 3}
+  m_audioClip: {fileID: 8300000, guid: bfcddcaf26564f442afebe3425917333, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -532,6 +532,12 @@ MonoBehaviour:
   startAnimTime: 1
   startPause: 0.5
   startScreen: {fileID: 3598789442044330215}
+  enemySpacing: 1
+  enemyDistance: 2
+  bgmEvent: {fileID: 11400000, guid: f55e36de83f31af4fb2485e94cf0202c, type: 2}
+  bgmRollbackEvent: {fileID: 11400000, guid: b803151e14320994cb4adc9de0561c11, type: 2}
+  bgm: {fileID: 8300000, guid: 9eb0bf1861e864d41ba7b1cf275d07ef, type: 3}
+  bgmVolume: 1
 --- !u!114 &4905885236809155901
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,6 +12,5 @@ public class BGMInstance : MonoBehaviour
     void Start()
     {
         bgmEvent.ChangeBGM(bgmClip, volume);
-        Debug.Log("as");
     }
 }

@@ -16,6 +16,12 @@ public class CombatManager : MonoBehaviour
     [Header("Combat")]
     public float enemySpacing = 1.0f, enemyDistance = 2.0f;
 
+    [Header("Audio")]
+    public BGMEvent bgmEvent;
+    public GameEvent bgmRollbackEvent;
+    public AudioClip bgm;
+    public float bgmVolume = 1.0f;
+
     private GameManager gameManager;
 
     private void Start()
@@ -31,14 +37,20 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    private void SetGameObjects(bool active)
+    {
+        gameManager.player.gameObject.SetActive(!active);
+        combatScreen.SetActive(active);
+    }
+
     private IEnumerator Combat()
     {
         // Animate fade-in
         yield return AnimateStartScreen(0, 1);
+        bgmEvent.ChangeBGM(bgm, bgmVolume);
+        SetGameObjects(true);
 
-        // Init fight
-        gameManager.player.gameObject.SetActive(false);
-        combatScreen.SetActive(true);
+        // Create enemies
         List<Enemy> enemies = InitEnemies();
 
         // Animate fade-out
@@ -46,11 +58,17 @@ public class CombatManager : MonoBehaviour
         yield return AnimateStartScreen(1, 0);
 
         // Combat
-
         while(enemies.Count > 0)
         {
             yield return null;
         }
+
+        // End
+        yield return AnimateStartScreen(0, 1);
+        SetGameObjects(false);
+        bgmRollbackEvent.Raise();
+        yield return AnimateStartScreen(1, 0);
+        stateEvent.ChangeState(GameState.Idle);
     }
 
     private List<Enemy> InitEnemies()
@@ -61,7 +79,7 @@ public class CombatManager : MonoBehaviour
 
         for(int i = 0; i < count; i++)
         {
-            Enemy enemy = Instantiate(enemyPrefabs[i], transform);
+            Enemy enemy = enemyPrefabs[i].Spawn(transform);
             enemy.transform.localPosition = new Vector3(enemySpacing * ((count - 1) / 2 - i), 0, enemyDistance);
             enemies.Add(enemy);
         }

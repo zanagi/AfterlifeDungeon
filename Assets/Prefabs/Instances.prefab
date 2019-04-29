@@ -596,6 +596,7 @@ GameObject:
   - component: {fileID: 6510416532530388627}
   - component: {fileID: 3315900973185226469}
   - component: {fileID: 501510467426408241}
+  - component: {fileID: 3276273560022146348}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -632,6 +633,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bgm: {fileID: 5498624545500509768}
   bgmEvent: {fileID: 11400000, guid: f55e36de83f31af4fb2485e94cf0202c, type: 2}
+  swapTime: 0.5
 --- !u!114 &501510467426408241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +652,35 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3315900973185226469}
         m_MethodName: ChangeBGM
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &3276273560022146348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552007033971815227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c7195cee1422d458c8dc7b616aaca9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: b803151e14320994cb4adc9de0561c11, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3315900973185226469}
+        m_MethodName: RollbackBGM
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

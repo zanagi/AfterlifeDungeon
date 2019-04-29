@@ -7,6 +7,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource bgm;
     public BGMEvent bgmEvent;
     public float swapTime = 0.5f;
+    private AudioClip backupClip;
 
     private void Start()
     {
@@ -19,18 +20,28 @@ public class AudioManager : MonoBehaviour
             return;
 
         StopAllCoroutines();
-        StartCoroutine(SwapBGM());
+        StartCoroutine(_ChangeBGM(bgmEvent.AudioClip));
     }
 
-    private IEnumerator SwapBGM()
+    public void RollbackBGM()
     {
-        if(bgm.clip)
-            yield return SetBGMVolume(0);
-        bgm.clip = bgmEvent.AudioClip;
-        yield return SetBGMVolume(bgmEvent.Volume);
+        StopAllCoroutines();
+        StartCoroutine(_RollbackBGM());
     }
 
-    private IEnumerator SetBGMVolume(float volume)
+    private IEnumerator _ChangeBGM(AudioClip clip, bool backup = true)
+    {
+        if (bgm.clip)
+        {
+            if(backup)
+                backupClip = bgm.clip;
+            yield return _ChangeBGMVolume(0);
+        }
+        bgm.clip = clip;
+        yield return _ChangeBGMVolume(bgmEvent.Volume);
+    }
+
+    private IEnumerator _ChangeBGMVolume(float volume)
     {
         float time = 0f;
         float startVolume = bgm.volume;
@@ -43,8 +54,24 @@ public class AudioManager : MonoBehaviour
         }
 
         if (volume <= 0)
+        {
             bgm.Stop();
-        else
+        }
+        else if (!bgm.isPlaying)
+        {
             bgm.Play();
+        }
+    }
+
+    private IEnumerator _RollbackBGM()
+    {
+        if(backupClip)
+        {
+            yield return _ChangeBGM(backupClip, false);
+            backupClip = null;
+        } else
+        {
+            yield return _ChangeBGMVolume(0);
+        }
     }
 }
