@@ -11,4 +11,8 @@
     IntroA = 4,
     IntroB = 5,
     IntroC = 6,
+
+    // Intro2
+    Intro2_1 = 101,
+    Intro2_2 = 102,
 }

@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadEvent: {fileID: 11400000, guid: 6278679fd5a43f14eae8bbb341297a4d, type: 2}
-  sceneName: Level1
+  sceneName: 1_Intro
   delay: 0.5
 --- !u!4 &294892354
 Transform:
