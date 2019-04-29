@@ -53,8 +53,10 @@ public class Stats
         hp -= amount;
     }
 
-    public void CheckLevelUp()
+    public void AddExperience(int amount)
     {
+        exp += amount;
+
         if(exp >= nextLvlExp)
         {
             exp -= nextLvlExp;

@@ -167,9 +167,21 @@ public class CombatManager : MonoBehaviour
         {
             if (enemies[i].stats.hp <= 0)
             {
+                AddPartyExp(enemies[i].stats.exp);
                 enemies[i].Recycle();
                 enemies.RemoveAt(i);
             }
+        }
+    }
+
+
+
+    private void AddPartyExp(int amount)
+    {
+        for(int i = 0; i < partyPanels.Length; i++)
+        {
+            if (partyPanels[i].userStats != null)
+                partyPanels[i].userStats.AddExperience(amount);
         }
     }
 

@@ -606,8 +606,6 @@ MonoBehaviour:
   enemyGroupB: {fileID: 11400000, guid: 123989325034c5f4691c5de6d6620601, type: 2}
   enemyA: {fileID: 960839288}
   enemyB: {fileID: 661658607}
-  portal: {fileID: 2105662227}
-  portalDialogue: {fileID: 11400000, guid: e2814aa45f29ee349a0219578ba7c8f3, type: 2}
 --- !u!4 &93365299
 Transform:
   m_ObjectHideFlags: 0
@@ -2447,11 +2445,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 4447ee8930b8a864a8e0471546392515,
         type: 2}
-    - target: {fileID: 4518102055494386997, guid: 2e5ef7afe0abdbf4aa8fa871d0f26d15,
-        type: 3}
-      propertyPath: nextLevel
-      value: 4_RecruitTutorial
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e5ef7afe0abdbf4aa8fa871d0f26d15, type: 3}
 --- !u!1001 &464568003
@@ -10223,18 +10216,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2096501774}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2105662227 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4518102055494386997, guid: 2e5ef7afe0abdbf4aa8fa871d0f26d15,
-    type: 3}
-  m_PrefabInstance: {fileID: 458041804}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d394c7d3a5644d04c9acac12643f8c8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2128144301
 PrefabInstance:
   m_ObjectHideFlags: 0
