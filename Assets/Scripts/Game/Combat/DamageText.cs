@@ -8,15 +8,15 @@ public class DamageText : MonoBehaviour
     public float animTime = 0.2f, pauseTime = 0.5f;
     private Text text;
 
-    public void Play(int damage, Camera combatCamera, Transform targetTransform)
+    public void Play(int damage, Camera combatCamera, Transform targetTransform, bool screenSpace = false)
     {
         if (!text)
             text = GetComponent<Text>();
         text.text = string.Empty;
-        StartCoroutine(_Play(damage, combatCamera, targetTransform));
+        StartCoroutine(_Play(damage, combatCamera, targetTransform, screenSpace));
     }
 
-    public IEnumerator _Play(int damage, Camera combatCamera, Transform targetTransform)
+    public IEnumerator _Play(int damage, Camera combatCamera, Transform targetTransform, bool screenSpace)
     {
         text.text = damage.ToString();
 
@@ -29,7 +29,8 @@ public class DamageText : MonoBehaviour
         {
             time += Time.deltaTime;
             transform.localScale = Vector3.Lerp(startScale, targetScale, time / animTime);
-            transform.position = combatCamera.WorldToScreenPoint(targetTransform.position);
+            transform.position = screenSpace ? targetTransform.position :
+                combatCamera.WorldToScreenPoint(targetTransform.position);
             yield return null;
         }
         yield return new WaitForSecondsRealtime(pauseTime);

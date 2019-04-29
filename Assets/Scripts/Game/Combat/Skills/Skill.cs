@@ -39,4 +39,12 @@ public class Skill : ScriptableObject
             damageEvent.ShowDamage(damage, enemies[i].spriteTransform);
         }
     }
+
+    public virtual void OnUse(Stats userStats, PartyMemberPanel panel)
+    {
+        userStats.hp -= cost;
+        int damage = panel.userStats.TakeDamage(
+                power + ((attribute == SkillAttribute.Magical) ? userStats.intelligence : userStats.strength));
+        damageEvent.ShowDamage(damage, panel.transform, true);
+    }
 }

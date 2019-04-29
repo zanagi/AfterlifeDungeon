@@ -16,7 +16,7 @@ public class CombatManager : MonoBehaviour
     [Header("Combat")]
     public GameEvent cursorLockEvent;
     public GameEvent cursorUnlockEvent;
-    public float enemySpacing = 1.0f, enemyDistance = 2.0f;
+    public float enemySpacing = 1.0f, enemyDistance = 2.0f, turnPause = 1.0f;
     public SkillDescriptionPanel descriptionPanel;
     public SkillSelectEvent skillSelectEvent;
     public HitEffect hitEffect;
@@ -34,6 +34,10 @@ public class CombatManager : MonoBehaviour
     public GameEvent bgmRollbackEvent, hitEvent;
     public AudioClip bgm;
     public float bgmVolume = 1.0f;
+
+    [Header("Game over")]
+    public LoadEvent loadEvent;
+    public string gameOverScene;
 
     private GameManager gameManager;
     private PartyMemberPanel[] partyPanels;
@@ -97,6 +101,8 @@ public class CombatManager : MonoBehaviour
         while(enemies.Count > 0)
         {
             yield return PlayTurn(enemies);
+            yield return new WaitForSecondsRealtime(turnPause);
+            yield return EnemyTurn(enemies);
         }
 
         // End
@@ -149,7 +155,7 @@ public class CombatManager : MonoBehaviour
                             else
                             {
                                 skill.OnUse(skillSelectEvent.UserStats, enemy);
-                                yield return _AnimateAttackCamera(enemy);
+                                yield return _AnimateAttackCamera(enemy.spriteTransform);
                             }
                             SetUIVisible(true);
                         }
@@ -158,6 +164,31 @@ public class CombatManager : MonoBehaviour
                 yield return null;
             }
             CheckEnemies(enemies);
+        }
+    }
+
+    private IEnumerator EnemyTurn(List<Enemy> enemies)
+    {
+        for(int i = 0; i < enemies.Count; i++)
+        {
+            Stats stats = enemies[i].stats;
+            List<Skill> skills = stats.skills;
+
+            if (skills.Count > 0)
+            {
+                Skill skill = skills[Random.Range(0, skills.Count)];
+                int playerCount = 1;
+
+                for(int j = 1; j < partyPanels.Length; j++)
+                {
+                    if (partyPanels[j].userStats != null)
+                        playerCount++;
+                }
+                PartyMemberPanel panel = partyPanels[Random.Range(0, playerCount)];
+                skill.OnUse(stats, panel);
+                yield return _AnimateAttackCamera(panel.transform, true);
+                CheckPlayers();
+            }
         }
     }
 
@@ -174,7 +205,24 @@ public class CombatManager : MonoBehaviour
         }
     }
 
-
+    private void CheckPlayers()
+    {
+        for (int i = 0; i < partyPanels.Length; i++)
+        {
+            Stats stats = partyPanels[i].userStats;
+            if (stats != null && stats.hp <= 0)
+            {
+                if (i == 0)
+                {
+                    loadEvent.LoadScene(gameOverScene);
+                }
+                else
+                {
+                    partyPanels[i].SetStats(null);
+                }
+            }
+        }
+    }
 
     private void AddPartyExp(int amount)
     {
@@ -194,12 +242,12 @@ public class CombatManager : MonoBehaviour
         descriptionPanel.SetActive(visible);
     }
 
-    private IEnumerator _AnimateAttackCamera(Enemy enemy)
+    private IEnumerator _AnimateAttackCamera(Transform targetTransform, bool screenSpace = false)
     {
         // Play hit effect
         hitEffect.gameObject.SetActive(true);
         hitEvent.Raise();
-        yield return hitEffect._Play(combatCamera, enemy.spriteTransform.transform);
+        yield return hitEffect._Play(combatCamera, targetTransform, screenSpace);
         hitEffect.gameObject.SetActive(false);
     }
 
@@ -239,6 +287,6 @@ public class CombatManager : MonoBehaviour
     {
         // Play damage text
         DamageText damageText = damageTextPrefab.Spawn(uiTop);
-        damageText.Play(damageEvent.Damage, combatCamera, damageEvent.Target);
+        damageText.Play(damageEvent.Damage, combatCamera, damageEvent.Target, damageEvent.IsScreenSpace);
     }
 }

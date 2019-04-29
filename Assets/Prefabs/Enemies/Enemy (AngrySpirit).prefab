@@ -47,13 +47,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     sprite: {fileID: 21300000, guid: 95296842201a3a745b39a653f60ab4b3, type: 3}
-    skills: []
+    skills:
+    - {fileID: 11400000, guid: 860550d9e724d9a45b93daa70be6e9f1, type: 2}
     level: 0
     exp: 5
     nextLvlExp: 0
-    hp: 30
-    maxHp: 30
-    strength: 2
+    hp: 20
+    maxHp: 20
+    strength: 4
     vitality: 2
     intelligence: 2
     agility: 2

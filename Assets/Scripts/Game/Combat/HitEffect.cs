@@ -22,7 +22,7 @@ public class HitEffect : MonoBehaviour
         
     }
 
-    public IEnumerator _Play(Camera combatCamera, Transform targetTransform)
+    public IEnumerator _Play(Camera combatCamera, Transform targetTransform, bool screenSpace)
     {
         Vector3 targetScale = Vector3.one;
         Vector3 startScale = Vector3.zero;
@@ -33,7 +33,8 @@ public class HitEffect : MonoBehaviour
         {
             time += Time.deltaTime;
             transform.localScale = Vector3.Lerp(startScale, targetScale, time / animTime);
-            transform.position = combatCamera.WorldToScreenPoint(targetTransform.position);
+            transform.position = screenSpace ? targetTransform.position
+                : combatCamera.WorldToScreenPoint(targetTransform.position);
             yield return null;
         }
         transform.localScale = startScale;
