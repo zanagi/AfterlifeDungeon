@@ -184,3 +184,4 @@ MonoBehaviour:
   loadEvent: {fileID: 11400000, guid: 6278679fd5a43f14eae8bbb341297a4d, type: 2}
   blockDialogue: {fileID: 0}
   dialogueEvent: {fileID: 0}
+  contactEvent: {fileID: 11400000, guid: 9cc6fdaeda19da540bd4201fc12e21ce, type: 2}

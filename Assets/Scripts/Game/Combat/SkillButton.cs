@@ -28,8 +28,11 @@ public class SkillButton : MonoBehaviour
 
     public void SelectButton()
     {
-        outline.enabled = true;
-        partyPanel.SelectSkillButton(this);
+        if (skill)
+        {
+            outline.enabled = true;
+            partyPanel.SelectSkillButton(this);
+        }
     }
 
     public void SetActive(bool active)

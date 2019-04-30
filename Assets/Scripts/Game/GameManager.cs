@@ -59,7 +59,10 @@ public class GameManager : MonoBehaviour
         for (int i = NPCs.Count - 1; i >= 0; i--)
         {
             if (!NPCs[i])
-                NPCs.RemoveAt(i); ;
+            {
+                NPCs.RemoveAt(i);
+                continue;
+            }
             NPCs[i].HandleUpdate(player);
         }
         player.HandleUpdate();
@@ -73,7 +76,10 @@ public class GameManager : MonoBehaviour
         for (int i = NPCs.Count - 1; i >= 0; i--)
         {
             if (!NPCs[i])
+            {
                 NPCs.RemoveAt(i);
+                continue;
+            }
             NPCs[i].HandleFixedUpdate(player);
         }
         player.HandleFixedUpdate();

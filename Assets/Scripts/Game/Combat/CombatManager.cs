@@ -40,6 +40,7 @@ public class CombatManager : MonoBehaviour
     [Header("Game over")]
     public LoadEvent loadEvent;
     public string gameOverScene;
+    public ContactEvent contactEvent;
 
     private GameManager gameManager;
     private PartyMemberPanel[] partyPanels;
@@ -67,10 +68,26 @@ public class CombatManager : MonoBehaviour
         transform.position = cameraEvent.CameraPos;
     }
 
+    public void AddMember(Stats stats)
+    {
+        /*
+        for(int i = 1; i < partyPanels.Length; i++)
+        {
+            if (partyPanels[i].userStats == null)
+            {
+                partyPanels[i].SetStats(stats);
+                break;
+            }
+        }
+        */
+        partyPanels[1].SetStats(stats);
+    }
+
     public void StartCombat()
     {
         if (stateEvent.ChangeState(GameState.Combat))
         {
+            // contactEvent.OnContact(string.Empty);
             StartCoroutine(Combat());
         }
     }
@@ -110,9 +127,13 @@ public class CombatManager : MonoBehaviour
         {
             yield return PlayTurn(enemies);
             yield return new WaitForSecondsRealtime(turnPause);
+            if (enemies.Count <= 0) 
+                break;
+
             yield return EnemyTurn(enemies);
             yield return new WaitForSecondsRealtime(turnPause);
         }
+        
 
         // End
         yield return AnimateStartScreen(0, 1);
@@ -135,7 +156,7 @@ public class CombatManager : MonoBehaviour
     {
         for(int i = 0; i < partyPanels.Length; i++)
         {
-            if (partyPanels[i].userStats == null)
+            if (!partyPanels[i].UserAlive())
                 continue;
 
             partyPanels[i].SetActive(true);
@@ -143,7 +164,7 @@ public class CombatManager : MonoBehaviour
             bool actionPending = true;
             while(actionPending)
             {
-                if(Input.GetMouseButtonDown(0))
+                if(Input.GetMouseButtonDown(0) && !Static.TouchedOverUI)
                 {
                     RaycastHit hit;
 
@@ -173,6 +194,9 @@ public class CombatManager : MonoBehaviour
                 yield return null;
             }
             CheckEnemies(enemies);
+
+            if (enemies.Count <= 0)
+                break;
         }
     }
 
@@ -190,10 +214,12 @@ public class CombatManager : MonoBehaviour
 
                 for(int j = 1; j < partyPanels.Length; j++)
                 {
-                    if (partyPanels[j].userStats != null)
+                    if (partyPanels[j].UserAlive())
                         playerCount++;
                 }
-                PartyMemberPanel panel = partyPanels[Random.Range(0, playerCount)];
+                int index = Random.Range(0, playerCount);
+                Debug.Log(playerCount + "/" + index);
+                PartyMemberPanel panel = partyPanels[index];
                 skill.OnUse(stats, panel);
                 descriptionPanel.SetDescription(skill.description);
                 yield return _AnimateAttackCamera(panel.transform, true);
@@ -238,7 +264,7 @@ public class CombatManager : MonoBehaviour
     {
         for(int i = 0; i < partyPanels.Length; i++)
         {
-            if (partyPanels[i].userStats != null)
+            if (partyPanels[i].UserAlive())
                 partyPanels[i].userStats.AddExperience(amount);
         }
     }

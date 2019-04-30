@@ -10,9 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dab03869b8173514f8aa5af364caef92, type: 3}
-  m_Name: EnemyGroup_3
+  m_Name: EnemyGroup_Sad1
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 7734060531692147962, guid: f5c3a2bfd92fef242b59abebfbd01a4b, type: 3}
-  - {fileID: 7734060531692147962, guid: f5c3a2bfd92fef242b59abebfbd01a4b, type: 3}
-  - {fileID: 7734060531692147962, guid: f5c3a2bfd92fef242b59abebfbd01a4b, type: 3}
+  - {fileID: 7734060531692147962, guid: ba0707c4c2f553246bafe0aa09706138, type: 3}

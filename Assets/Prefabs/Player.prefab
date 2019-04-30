@@ -80,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contactEvent: {fileID: 11400000, guid: 9cc6fdaeda19da540bd4201fc12e21ce, type: 2}
   stats:
-    sprite: {fileID: 21300000, guid: b642b2fb0429f5a448b1bebf00d782ba, type: 3}
+    sprite: {fileID: 21300000, guid: b77838f9b1808184a96401de998584ab, type: 3}
     skills:
     - {fileID: 11400000, guid: 0de29ce1509f7194caf3538b6d0d93b0, type: 2}
     level: 1

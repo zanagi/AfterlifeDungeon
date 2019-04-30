@@ -25,6 +25,12 @@ public class PartyMemberPanel : MonoBehaviour
         manager = GetComponentInParent<CombatManager>();
     }
 
+    public bool UserAlive()
+    {
+        bool isAlive = userStats != null && userStats.hp > 0;
+        return isAlive;
+    }
+
     public void SetStats(Stats stats)
     {
         userStats = stats;
@@ -63,6 +69,8 @@ public class PartyMemberPanel : MonoBehaviour
         {
             memberImage.sprite = userStats.sprite;
             memberImage.color = Color.white;
+
+            lifebar.gameObject.SetActive(true);
             lifebar.SetStats(userStats);
             for (int i = 0; i < skillButtons.Length; i++)
             {

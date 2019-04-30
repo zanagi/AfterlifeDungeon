@@ -10,6 +10,7 @@ public class LevelPortal : MonoBehaviour
     [Header("Dialogue")]
     public Dialogue blockDialogue;
     public DialogueEvent dialogueEvent;
+    public ContactEvent contactEvent;
 
     public void Advance()
     {
@@ -19,6 +20,7 @@ public class LevelPortal : MonoBehaviour
             return;
         }
 
+        contactEvent.OnContact(string.Empty);
         loadEvent.LoadScene(nextLevel);
     }
 }

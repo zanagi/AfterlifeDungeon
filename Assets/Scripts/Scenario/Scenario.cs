@@ -16,4 +16,11 @@
     // Intro2
     Intro2_1 = 101,
     Intro2_2 = 102,
+
+    // Level 2
+    Level2_Join = 201,
+    Level2_ClownFight = 202,
+
+    // End
+    End = 999,
 }

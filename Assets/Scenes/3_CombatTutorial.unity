@@ -2450,7 +2450,7 @@ PrefabInstance:
     - target: {fileID: 4518102055494386997, guid: 2e5ef7afe0abdbf4aa8fa871d0f26d15,
         type: 3}
       propertyPath: nextLevel
-      value: 4_RecruitTutorial
+      value: Dungeon1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e5ef7afe0abdbf4aa8fa871d0f26d15, type: 3}

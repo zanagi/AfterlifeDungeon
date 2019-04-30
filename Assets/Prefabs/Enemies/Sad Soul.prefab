@@ -53,11 +53,11 @@ MonoBehaviour:
     level: 0
     exp: 12
     nextLvlExp: 0
-    hp: 30
-    maxHp: 30
-    strength: 4
-    vitality: 4
-    intelligence: 2
+    hp: 36
+    maxHp: 36
+    strength: 5
+    vitality: 5
+    intelligence: 5
     agility: 2
   spriteTransform: {fileID: 2750852276070673257}
 --- !u!114 &2465367420092986891

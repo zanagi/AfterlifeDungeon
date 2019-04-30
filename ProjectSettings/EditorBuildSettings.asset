@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/4_RecruitTutorial.unity
     guid: 4da912eba905a20419b0ee95a5ea550a
   - enabled: 1
+    path: Assets/Scenes/5_End.unity
+    guid: acec47fa87cd324488abc73faffd30d6
+  - enabled: 1
     path: Assets/Scenes/Dungeon1.unity
     guid: 3e34b2ba208ebe944a7cd160c2da92c3
   - enabled: 1

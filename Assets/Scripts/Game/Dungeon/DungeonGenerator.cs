@@ -86,8 +86,8 @@ public class DungeonGenerator : MonoBehaviour
 
         // Spawn portal
         Room portalRoom = rooms.GetRandom();
-        portal.Spawn(new Vector3(portalRoom.RandomX, 0, portalRoom.RandomY));
-        portal.nextLevel = nextLevel;
+        LevelPortal newPortal = portal.Spawn(new Vector3(portalRoom.RandomX, 0, portalRoom.RandomY));
+        newPortal.nextLevel = nextLevel;
 
         // Combat camera
         cameraEvent.SetCamera(new Vector3(portalRoom.x + portalRoom.width / 2, 0, portalRoom.y + portalRoom.height / 2));

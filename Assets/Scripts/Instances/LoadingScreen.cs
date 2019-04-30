@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadingScreen : MonoBehaviour
 {
-    public static bool waitLoad = false;
+    public static bool loading = false;
 
     public bool IsLoading { get; private set; }
     public string CurrentScene { get; private set; }
@@ -43,23 +43,19 @@ public class LoadingScreen : MonoBehaviour
         IsLoading = true;
         CurrentScene = sceneName;
 
-        // Animate fade-in
-        yield return AnimateBackgroundFade(1.0f);
-
         // Pause time
         Time.timeScale = 0f;
+
+        // Animate fade-in
+        yield return AnimateBackgroundFade(1.0f);
 
         // Load scene
         var loadOperation = SceneManager.LoadSceneAsync(sceneName);
         while (!loadOperation.isDone)
             yield return new WaitForSecondsRealtime(frameTime);
-
+        
         Time.timeScale = 1f;
-
         yield return null;
-
-        while (waitLoad)
-            yield return null;
 
         // Animate fade-out
         yield return AnimateBackgroundFade(0.0f);

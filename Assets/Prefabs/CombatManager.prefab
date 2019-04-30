@@ -886,6 +886,7 @@ MonoBehaviour:
   bgmVolume: 1
   loadEvent: {fileID: 11400000, guid: 6278679fd5a43f14eae8bbb341297a4d, type: 2}
   gameOverScene: GameOver
+  contactEvent: {fileID: 11400000, guid: 9cc6fdaeda19da540bd4201fc12e21ce, type: 2}
 --- !u!114 &4905885236809155901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,6 +1100,7 @@ GameObject:
   - component: {fileID: 4176607432400925643}
   - component: {fileID: 6907206225249084026}
   - component: {fileID: 5582743962163727169}
+  - component: {fileID: 8500992094096998174}
   m_Layer: 0
   m_Name: CombatCanvas
   m_TagString: Untagged
@@ -1171,6 +1173,23 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &8500992094096998174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308386588444896920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 32
 --- !u!1 &8442978049840128468
 GameObject:
   m_ObjectHideFlags: 0

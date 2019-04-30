@@ -9,6 +9,12 @@ public static class Static
     public static readonly string horizontalAxis = "Horizontal", verticalAxis = "Vertical",
         mouseXAxis = "Mouse X", mouseYAxis = "Mouse Y", mouseClickAxis = "Fire1",
         submitAxis = "Submit";
+    public static int dungeonCount = 2;
+
+    public static bool TouchedOverUI
+    {
+        get { return EventSystem.current.IsPointerOverGameObject() || EventSystem.current.currentSelectedGameObject != null; }
+    }
 
     public static void SetAlpha(this MaskableGraphic graphics, float alpha)
     {
