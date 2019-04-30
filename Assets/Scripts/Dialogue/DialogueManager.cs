@@ -158,13 +158,23 @@ public class DialogueManager : MonoBehaviour
         float time = 0.0f;
         while (time <= animationTime)
         {
+            if(Skip())
+            {
+                break;
+            }
             time += Time.deltaTime;
 
             float alpha = Mathf.Lerp(a, b, time / animationTime);
             mainImage.GetComponent<CanvasGroup>().alpha = alpha;
             yield return null;
         }
+        mainImage.GetComponent<CanvasGroup>().alpha = b;
         yield return null;
+    }
+
+    private bool Skip()
+    {
+        return Input.GetKey(KeyCode.Tab);
     }
 
     private Sprite GetSprite(string spriteName)
@@ -192,7 +202,7 @@ public class DialogueManager : MonoBehaviour
                 currentCharTime += Time.deltaTime;
                 yield return null;
             }
-            if (inputNext)
+            if (inputNext || Skip())
             {
                 mainText.text = text;
                 yield return null;
@@ -202,8 +212,9 @@ public class DialogueManager : MonoBehaviour
             mainText.text += text[i];
             yield return null;
         }
+        mainText.text = text;
 
-        while (!inputNext)
+        while (!inputNext && !Skip())
             yield return null;
         dialogueNextEvent.Raise();
         yield return null;

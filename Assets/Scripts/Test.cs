@@ -13,7 +13,11 @@ public class Test : MonoBehaviour
     {
         if (GameManager.Instance)
             Destroy(GameManager.Instance.gameObject);
-        state.ChangeState(GameState.Idle);
+
+        if (state)
+            state.ChangeState(GameState.Idle);
+        else
+            enabled = false;
     }
 
     // Update is called once per frame

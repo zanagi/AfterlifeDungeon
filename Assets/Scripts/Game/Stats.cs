@@ -3,10 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
+public struct LevelSkill
+{
+    public int level;
+    public Skill skill;
+}
+
+[System.Serializable]
 public class Stats
 {
     public Sprite sprite;
     public List<Skill> skills;
+    public List<LevelSkill> levelSkills;
 
     public int level;
     public int exp, nextLvlExp;
@@ -66,6 +74,25 @@ public class Stats
             // Stats:
             maxHp += 10;
             hp = maxHp;
+
+            if (Random.Range(0, 100) < 50)
+                strength++;
+            if (Random.Range(0, 100) < 50)
+                vitality++;
+            if (Random.Range(0, 100) < 50)
+                intelligence++;
+
+            if (levelSkills != null)
+            {
+                for (int i = levelSkills.Count - 1; i >= 0; i--)
+                {
+                    if(level >= levelSkills[i].level)
+                    {
+                        skills.Add(levelSkills[i].skill);
+                        levelSkills.RemoveAt(i);
+                    }
+                }
+            }
         }
     }
 }

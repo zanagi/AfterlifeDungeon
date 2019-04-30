@@ -265,7 +265,10 @@ public class CombatManager : MonoBehaviour
         for(int i = 0; i < partyPanels.Length; i++)
         {
             if (partyPanels[i].UserAlive())
+            {
                 partyPanels[i].userStats.AddExperience(amount);
+                partyPanels[i].UpdateUI();
+            }
         }
     }
 

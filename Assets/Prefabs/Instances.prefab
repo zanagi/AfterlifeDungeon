@@ -1397,6 +1397,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3bec40efbd00313489dbfb7fb3272682, type: 3}
   - {fileID: 21300000, guid: b642b2fb0429f5a448b1bebf00d782ba, type: 3}
   - {fileID: 21300000, guid: 804e479a1423e794fa7ea2d3691a5457, type: 3}
+  - {fileID: 21300000, guid: 485410bf182da3e41aed1a7c13d3a4df, type: 3}
   mainImage: {fileID: 1531801264}
   textBoxImage: {fileID: 273524591}
   nameBoxImage: {fileID: 1316264570}
